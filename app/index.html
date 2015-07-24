@@ -11,17 +11,69 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
+
+
+    <!-- Custom Fonts -->
+    <link href="assets/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+
     <link rel="stylesheet" href="assets/app.css"/>
+
+
+    <!--- LAnding css -->
+    <!-- Custom CSS -->
+    <link href="assets/grayscale.css" rel="stylesheet">
   </head>
 
-  <body ng-app="question" >
+  <body ng-app="question" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-  <div>
-        <nav class="navbar navbar-default">
-          <p class="navbar-text navbar-left" ui-sref="main">The Exam</p>
-        </nav>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand page-scroll" href="#page-top">
+          <i class="fa fa-play-circle"></i> <span class="light">Start</span> Bootstrap
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+          <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#about">About</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#download">Download</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
         <div ui-view></div>
-  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <p>Copyright &copy; Your Website 2014</p>
+    </div>
+  </footer>
+
 
   <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
@@ -34,9 +86,14 @@
 	});
   </script>
 
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+  <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
 
 
-    <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -56,6 +113,7 @@
     <script src="src/dash/DashController.js"></script>
   <script src="src/dash/welcome/WelcomeController.js"></script>
     <script src="src/dash/addQuestion/AddController.js"></script>
-
+  <!-- Custom Theme JavaScript -->
+  <script src="src/grayscale.js"></script>
   </body>
 </html>

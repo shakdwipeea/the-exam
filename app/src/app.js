@@ -3,9 +3,13 @@
 
 	angular.module('question',['ui.router', 'toaster', 'ngAnimate'])
 			.config( function  ($stateProvider, $urlRouterProvider) {
-				$urlRouterProvider.otherwise('/login');
+				$urlRouterProvider.otherwise('/main');
 
 				$stateProvider
+						.state('home', {
+							url: '/main',
+							templateUrl: 'src/home/home.tpl'
+						})
 						.state('main', {
 							url:'/login',
 							templateUrl:'src/login/login.tpl',

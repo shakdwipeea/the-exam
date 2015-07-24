@@ -327,7 +327,7 @@
 			"file": "server/src/github.com/shakdwipeea/main/server.go",
 			"settings":
 			{
-				"buffer_size": 1329,
+				"buffer_size": 1158,
 				"line_ending": "Unix"
 			}
 		},
@@ -335,7 +335,15 @@
 			"file": "server/src/github.com/shakdwipeea/handlers/handlers.go",
 			"settings":
 			{
-				"buffer_size": 5785,
+				"buffer_size": 6765,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/akash/.config/sublime-text-3/Packages/GoSublime/USAGE.md",
+			"settings":
+			{
+				"buffer_size": 8539,
 				"line_ending": "Unix"
 			}
 		}
@@ -549,7 +557,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -558,15 +566,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1329,
+						"buffer_size": 1158,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1061,
-								1061
+								0,
+								0
 							]
 						],
 						"settings":
@@ -578,7 +586,7 @@
 						"translation.y": 864.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -587,15 +595,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5785,
+						"buffer_size": 6765,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5168,
-								5168
+								0,
+								0
 							]
 						],
 						"settings":
@@ -607,7 +615,36 @@
 						"translation.y": 4803.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/akash/.config/sublime-text-3/Packages/GoSublime/USAGE.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								829,
+								829
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

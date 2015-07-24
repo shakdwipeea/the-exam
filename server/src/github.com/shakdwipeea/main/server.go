@@ -36,14 +36,14 @@ func main() {
 	*/
 	router.Use(cors.Middleware(cors.Options{}))
 
-	//router.LoadHTMLGlob("views/*")
+	router.LoadHTMLGlob("./app/*.html")
 
 	/**
 	html routes
 	*/
 
 	router.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "This is not what you're looing for. Is it???")
+		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 
 	/**
