@@ -128,3 +128,19 @@ span.name {
   font-size:1.1em;
   padding-left:5px;
 }
+
+
+.loginForm {
+  width: 400px;
+}
+
+.my-fab {
+  right: 10%;
+  position: fixed;
+  z-index: 11;
+  bottom: 10%;
+}
+
+.add-toolbar {
+  margin:-8px;
+}
