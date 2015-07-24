@@ -8,27 +8,27 @@
 				$stateProvider
 						.state('home', {
 							url: '/main',
-							templateUrl: 'src/home/home.tpl'
+							templateUrl: '/public/src/home/home.tpl'
 						})
 						.state('main', {
 							url:'/login',
-							templateUrl:'src/login/login.tpl',
+							templateUrl: '/public/src/login/login.tpl',
 							controller:'LoginController as login'
 						})
 
 						.state('dash', {
 							url: '/dash',
-							templateUrl: 'src/dash/dash.tpl',
+							templateUrl: '/public/src/dash/dash.tpl',
 							controller: 'DashController as dash'
 						})
 						.state('dash.welcome', {
 							url:'/welcome',
-							templateUrl:'src/dash/welcome/welcome.tpl',
+							templateUrl: '/public/src/dash/welcome/welcome.tpl',
 							controller: 'WelcomeController as welcome'
 						})
 						.state('dash.add', {
 							url: '/add',
-							templateUrl: 'src/dash/addQuestion/add.tpl',
+							templateUrl: '/public/src/dash/addQuestion/add.tpl',
 							controller: 'AddController as add'
 						})
 				;
