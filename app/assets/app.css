@@ -150,5 +150,32 @@ span.name {
 }
 .welcome {
   height: 500%;
-  background-color: white;
+  background-color: #fff;
+}
+
+
+.topbar {
+  opacity: 0.5;
+}
+
+.hero {
+  background: url("http://wallsfield.com/wp-content/uploads/2014/12/Albert-Einstein-Physic-Quotes.jpg")  fixed;
+  background-size: cover;
+  opacity: 1;
+  height: 800px;
+}
+
+.heading-hero {
+  top: 78px;
+}
+
+@font-face {
+  font-family: 'my';
+  src: url("/assets/fonts/ENDORALT.ttf") format('truetype');
+}
+
+#heading-text {
+  font-family: 'my' ,'cursive';
+  font-size: 113px;
+  color: white;
 }

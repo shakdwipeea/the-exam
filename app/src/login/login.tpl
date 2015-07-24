@@ -1,5 +1,8 @@
-<div class="container">
+<div class="row">
+
+<div class="container intro">
     <div class="col-lg-offset-4 col-lg-4">
+        <h2 class="h2">Login</h2>
     <form>
             <div class="form-group">
                 <input placeholder="Username" class="form-control" id="username" required name="username" ng-model="login.user.username">
@@ -17,4 +20,4 @@
     <div class="col-lg-offset-2 col-lg-2">
         <toaster-container></toaster-container>
     </div>
-</div>
+</div></div>

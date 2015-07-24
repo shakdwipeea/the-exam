@@ -1,3 +1,4 @@
+<div class="intro">
 <div class="row">
     <div class="col-lg-2">
         <nav class="nav" role="navigation">
@@ -14,4 +15,4 @@
         <div ui-view></div>
     </div>
 </div>
-</div>
+</div></div>

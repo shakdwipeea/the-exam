@@ -13,33 +13,22 @@
       <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
 
 
-    <!-- Custom Fonts -->
-    <link href="assets/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
-          type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-
-
     <link rel="stylesheet" href="assets/app.css"/>
 
-
-    <!--- LAnding css -->
-    <!-- Custom CSS -->
-    <link href="assets/grayscale.css" rel="stylesheet">
   </head>
 
-  <body ng-app="question" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <body ng-app="question" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" >
 
 
   <!-- Navigation -->
-  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default "role="navigation">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
           <i class="fa fa-bars"></i>
         </button>
-        <a class="navbar-brand page-scroll" href="#page-top">
-          <i class="fa fa-play-circle"></i> <span class="light">Start</span> Bootstrap
+        <a class="navbar-brand page-scroll" ui-sref="home">
+          <i class="fa fa-play-circle"></i> <span class="light">The</span> Exam
         </a>
       </div>
 
@@ -59,6 +48,9 @@
           <li>
             <a class="page-scroll" href="#contact">Contact</a>
           </li>
+          <li>
+            <a class="page-scroll" ui-sref="main">Login</a>
+          </li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -68,12 +60,6 @@
         <div ui-view></div>
 
   <!-- Footer -->
-  <footer>
-    <div class="container text-center">
-      <p>Copyright &copy; Your Website 2014</p>
-    </div>
-  </footer>
-
 
   <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
@@ -86,9 +72,9 @@
 	});
   </script>
 
-  <!-- jQuery -->
+<!--  &lt;!&ndash; jQuery &ndash;&gt;
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>-->
 
   <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
 
@@ -113,7 +99,7 @@
     <script src="src/dash/DashController.js"></script>
   <script src="src/dash/welcome/WelcomeController.js"></script>
     <script src="src/dash/addQuestion/AddController.js"></script>
-  <!-- Custom Theme JavaScript -->
-  <script src="src/grayscale.js"></script>
+<!--  &lt;!&ndash; Custom Theme JavaScript &ndash;&gt;
+  <script src="src/grayscale.js"></script>-->
   </body>
 </html>

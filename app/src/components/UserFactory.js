@@ -3,7 +3,7 @@
  */
 angular.module('question')
 .constant('Host', {
-        add: ''   //'http://127.0.0.1:3000'
+        add: 'http://127.0.0.1:3000'
     })
 .factory('User', function ($http, Host) {
         var token = null,
