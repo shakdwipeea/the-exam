@@ -43,7 +43,7 @@ func main() {
 	*/
 
 	router.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "Hello World? vc")
+		c.JSON(http.StatusOK, "This is not what you're looing for. Is it??")
 	})
 
 	/**
