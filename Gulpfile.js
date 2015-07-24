@@ -106,6 +106,20 @@ gulp.task('watch', [
     ]);
 });
 
+gulp.task('deploy', function () {
+    child.execSync("git add .");
+    child.execSync("git commit -a -m 'Deploying via gulp ");
+    child.execSync("git push -u origin master");
+   child.execSync("ssh ~/aws/sarawagi/sarawagi_ec2.pem ubuntu@52.3.212.51");
+   child.execSync("git pull", {cwd: "/home/ubuntu/the-exam"});
+   child.execSync("gulp server:build", {cwd: "/home/ubuntu/the-exam"});
+   child.execSync("server/bin/server", {cwd: "/home/ubuntu/the-exam"});
+    notifier.notify({
+        title: 'Deployed',
+        message: 'Hah mahanta'
+    })
+});
+
 /*
  * Build assets by default.
  */
