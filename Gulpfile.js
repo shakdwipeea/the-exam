@@ -9,6 +9,8 @@ var notifier = require('node-notifier');
 var reload = require('gulp-livereload');
 var sync = require('gulp-sync')(gulp).sync;
 var server = null;
+var GulpSSH = require('gulp-ssh');
+var fs = require('fs');
 /*
  * Build application server.
  */
@@ -106,18 +108,36 @@ gulp.task('watch', [
     ]);
 });
 
+/**
+ * For deploy
+ * @type {{host: string, port: number, username: string, privateKey}}
+ */
+var config = {
+    host: '52.3.212.51',
+    port: 22,
+    username: 'ubuntu',
+    privateKey: fs.readFileSync('/home/akash/aws/sarawgi/sarawagi_ec2.pem')
+};
+
+var gulpSSH = new GulpSSH({
+    ignoreErrors: false,
+    sshConfig: config
+})
+
 gulp.task('deploy', function () {
-    child.execSync("git add .");
-    child.execSync("git commit -a -m 'Deploying via gulp ");
-    child.execSync("git push -u origin master");
-   child.execSync("ssh ~/aws/sarawagi/sarawagi_ec2.pem ubuntu@52.3.212.51");
-   child.execSync("git pull", {cwd: "/home/ubuntu/the-exam"});
-   child.execSync("gulp server:build", {cwd: "/home/ubuntu/the-exam"});
-   child.execSync("server/bin/server", {cwd: "/home/ubuntu/the-exam"});
-    notifier.notify({
-        title: 'Deployed',
-        message: 'Hah mahanta'
-    })
+   return gulpSSH
+    .shell([
+       "cd the-exam",
+       "git pull",
+       "export GIN_MODE=release",
+       "export GOPATH=/home/ubuntu/the-exam/server",
+       "export GOBIN=/home/ubuntu/the-exam/server/bin",
+       "pm2 restart ./server/bin/server"
+   ], {
+           filepath: 'shell.log'
+       })
+       .pipe(gulp.dest("logs"))
+
 });
 
 /*
