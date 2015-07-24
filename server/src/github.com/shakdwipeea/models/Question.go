@@ -10,6 +10,7 @@ type Question struct {
 	Option2 string
 	Option3 string
 	Option4 string
+	Correct string
 	Tags []string
 	Subject string
 }

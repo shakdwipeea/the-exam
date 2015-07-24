@@ -38,6 +38,7 @@ angular.module('question')
                     option4: questionData.option4,
                     token: token,
                     subject: subject,
+                    correct: questionData.correct,
                     tags: selectedTags
                 };
 

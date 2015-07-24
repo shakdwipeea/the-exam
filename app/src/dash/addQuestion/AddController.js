@@ -15,6 +15,14 @@ angular.module('question')
 		self.addText = "Add";
 
         self.submit = function  () {
+            console.log(self.question);
+            if (!self.question.questionText || !self.question.option1 ||
+                !self.question.option2 || !self.question.option3 ||
+                !self.question.option4 || !self.question.correct) {
+                toaster.pop('error', 'Error ocurred', 'Missing Values');
+                return;
+            }
+
 			self.addText = "Adding.............";
 
         	var promise = User.add(self.question, self.selectedTags);
@@ -30,7 +38,7 @@ angular.module('question')
 						toaster.pop('success', 'Success', 'Question Added');
 					} else {
 						console.log("error");
-						toaster.pop('error', 'Error ocurred', 'OOps Try Again');
+						toaster.pop('error', 'Error ocurred', 'Missing Values');
 					}
 					self.addText = "Add";
 				})

@@ -31,6 +31,16 @@
             </div>
 
             <div class="form-group">
+                <label for="correct">Correct</label>
+                <select id="correct" data-ng-model="add.question.correct" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <button ng-click="add.submit()" class="btn btn-primary btn-block" type="submit">{{add.addText}}</button>
             </div>
         </form>

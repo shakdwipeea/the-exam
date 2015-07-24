@@ -180,6 +180,7 @@ func (mongo *Mongo) AddQuestion(c *gin.Context) {
 		Token   string `json:"token"`
 		Subject string `json:"subject"`
 		Tags []string `json:"tags"`
+		Correct string `json:"correct"`
 	}
 
 	err := c.BindJSON(&QuestionInput)
@@ -189,12 +190,13 @@ func (mongo *Mongo) AddQuestion(c *gin.Context) {
 			"err": true,
 			"msg": "Error parsing",
 		})
+		return
 	}
 
 	if QuestionInput.Text != "" && QuestionInput.Option1 != "" &&
 		QuestionInput.Option2 != "" && QuestionInput.Option3 != "" &&
 		QuestionInput.Option4 != "" && QuestionInput.Subject != "" &&
-		QuestionInput.Token != "" {
+		QuestionInput.Token != "" && QuestionInput.Correct != "" {
 
 		/*
 			validate jwt token
@@ -223,6 +225,7 @@ func (mongo *Mongo) AddQuestion(c *gin.Context) {
 			question.Option4 = QuestionInput.Option4
 			question.Subject = QuestionInput.Subject
 			question.Tags = QuestionInput.Tags
+			question.Correct = QuestionInput.Correct
 
 			err := question.AddQuestion(mongo.Database)
 

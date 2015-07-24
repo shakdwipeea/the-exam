@@ -64,7 +64,7 @@ func main() {
 	/**
 	for static files
 	*/
-	router.Static("/public", "/home/akash/Kode/Radeon/app/")
+	router.Static("/public", "./app/")
 
 	/**
 	Run the server
