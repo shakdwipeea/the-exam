@@ -11,6 +11,7 @@ var sync = require('gulp-sync')(gulp).sync;
 var server = null;
 var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
+var browserSync = require('browser-sync').create();
 /*
  * Build application server.
  */
@@ -108,6 +109,16 @@ gulp.task('watch', [
     ]);
 });
 
+gulp.task('client', function () {
+    gulp.watch(['./app/**/*.js', './app/**/ *.html', './app/**/*.tpl', './app/**/ *.css'])
+        .on('change', browserSync.reload)
+
+    notifier.notify({
+        title: 'client refreshed',
+        message: 'Hah mahanta'
+    })
+});
+
 /**
  * For deploy
  * @type {{host: string, port: number, username: string, privateKey}}
@@ -122,7 +133,7 @@ var config = {
 var gulpSSH = new GulpSSH({
     ignoreErrors: false,
     sshConfig: config
-})
+});
 
 gulp.task('deploy', function () {
    return gulpSSH
@@ -143,4 +154,4 @@ gulp.task('deploy', function () {
 /*
  * Build assets by default.
  */
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'watch', 'client']);
