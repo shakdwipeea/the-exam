@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
   <head>
-    <title>Angular Material - Starter App</title>
+    <title>The Exam</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,18 +12,6 @@
     <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/app.css"/>
-
-
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    <script type="text/x-mathjax-config">
-	MathJax.Hub.Config({
-		tex2jax: {
-		    inlineMath: [['$','$'], ['\\(','\\)']],
-		    processEscapes: true
-		    }
-	});
-  </script>
   </head>
 
   <body ng-app="question" >
@@ -34,6 +22,17 @@
         </nav>
         <div ui-view></div>
   </div>
+
+  <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  <script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {
+		    inlineMath: [['$','$'], ['\\(','\\)']],
+		    processEscapes: true
+		    }
+	});
+  </script>
 
 
 
@@ -56,6 +55,7 @@
     <!--Controllers-->
     <script src="src/login/LoginController.js"></script>
     <script src="src/dash/DashController.js"></script>
+  <script src="/src/dash/welcome/WelcomeController.js"></script>
     <script src="src/dash/addQuestion/AddController.js"></script>
 
   </body>

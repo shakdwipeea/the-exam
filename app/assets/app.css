@@ -148,3 +148,7 @@ span.name {
 .tag {
   margin: 5px;
 }
+.welcome {
+  height: 500%;
+  background-color: white;
+}

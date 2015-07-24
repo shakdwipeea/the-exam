@@ -3,7 +3,9 @@
     <div class="col-lg-offset-1 col-lg-4">
         <form class="form-horizontal">
             <div class="form-group ">
-                <label for="question">Question</label>
+                <label for="question">
+                    Question <a target="_blank" href="https://en.wikipedia.org/wiki/Help:Displaying_a_formula#Functions.2C_symbols.2C_special_characters">Help for typing Math</a>
+                </label>
                 <textarea ng-model="add.question.questionText" id="question" class="form-control" rows="3"
                           placeholder="Type your question"></textarea>
             </div>
@@ -43,10 +45,10 @@
             </div>
             <div class="row"></div>
             <ul class="list-group">
-                <li class="list-group-item">1.{{add.question.option1}}</li>
-                <li class="list-group-item">2.{{add.question.option2}}</li>
-                <li class="list-group-item">3.{{add.question.option3}}</li>
-                <li class="list-group-item">4.{{add.question.option4}}</li>
+                <li class="list-group-item" mathjax-bind="add.question.option1">Option1</li>
+                <li class="list-group-item" mathjax-bind="add.question.option2">Option2</li>
+                <li class="list-group-item" mathjax-bind="add.question.option3">Option3</li>
+                <li class="list-group-item" mathjax-bind="add.question.option4">Option3</li>
             </ul>
         </div>
         <div class="row">
@@ -56,7 +58,7 @@
                     <label for="tags">Tags:</label>
                     <span data-ng-repeat="tag in add.selectedTags" class="label label-default tag">{{tag}}</span>
                 </h4>
-                <input ng-keydown="add.addTag($event)" id="label" type="text" data-ng-model="add.newTagText"
+                <input ng-keydown="add.addTag($event)" id="label" type="text" data-ng-model="add.newTagText" placeholder="Press enter to add a tag"
                        class="form-control">
             </div>
             <div class="row">

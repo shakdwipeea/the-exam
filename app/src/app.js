@@ -17,6 +17,11 @@
 							templateUrl: 'src/dash/dash.tpl',
 							controller: 'DashController as dash'
 						})
+						.state('dash.welcome', {
+							url:'/welcome',
+							templateUrl:'src/dash/welcome/welcome.tpl',
+							controller: 'WelcomeController as welcome'
+						})
 						.state('dash.add', {
 							url: '/add',
 							templateUrl: 'src/dash/addQuestion/add.tpl',

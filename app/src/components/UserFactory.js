@@ -48,7 +48,7 @@ angular.module('question')
                 return new Error("Go to hell");
             }
 
-        }
+        };
 
         var addTag = function (tag) {
             if (token && tag.name) {
@@ -65,10 +65,19 @@ angular.module('question')
             return $http.get(Host.add + '/tags');
         };
 
+        var isToken = function() {
+            if (token) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         return {
             login: login,
             add: addQuestion,
             newTag: addTag,
-            getTags: getTags
+            getTags: getTags,
+            isLoggedIn: isToken
         }
 });
