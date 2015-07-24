@@ -1,0 +1,710 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ad",
+				"addQuestion"
+			],
+			[
+				"re",
+				"requestBody"
+			],
+			[
+				"queston",
+				"questionData"
+			],
+			[
+				"w",
+				"writeData"
+			],
+			[
+				"Err",
+				"err"
+			],
+			[
+				"dat",
+				"data"
+			],
+			[
+				"conne",
+				"connection"
+			],
+			[
+				"sub",
+				"subHub"
+			],
+			[
+				"co",
+				"connect"
+			],
+			[
+				"pub",
+				"pubHub"
+			],
+			[
+				"conn",
+				"connect"
+			],
+			[
+				"tas",
+				"taskHub"
+			],
+			[
+				"pa",
+				"pathElement"
+			],
+			[
+				"path",
+				"pathElement"
+			],
+			[
+				"place",
+				"place_id"
+			],
+			[
+				"json",
+				"json2csv"
+			],
+			[
+				"fn",
+				"fun	Function"
+			],
+			[
+				"in",
+				"inJson"
+			],
+			[
+				"cs",
+				"csvStream"
+			],
+			[
+				"pat",
+				"pathElement"
+			],
+			[
+				"Ap",
+				"API_KEY	param"
+			],
+			[
+				"url",
+				"urllib	module"
+			],
+			[
+				"B",
+				"BannerSchema"
+			],
+			[
+				"CreateBa",
+				"createBanner"
+			],
+			[
+				"des",
+				"description"
+			],
+			[
+				"da",
+				"dataCsv"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"E",
+				"err"
+			],
+			[
+				"wo",
+				"workZip"
+			],
+			[
+				"csv",
+				"csvFile"
+			],
+			[
+				"zip",
+				"zipFile"
+			],
+			[
+				"angul",
+				"angular-ui-router"
+			],
+			[
+				"log",
+				"loggedIn"
+			],
+			[
+				"coll",
+				"collegeData"
+			],
+			[
+				"Create",
+				"createRestaurant"
+			],
+			[
+				"templ",
+				"templates"
+			],
+			[
+				"templa",
+				"templateUrl"
+			],
+			[
+				"com",
+				"comm-block	Comment - Block style comment"
+			],
+			[
+				"res",
+				"restaurant"
+			],
+			[
+				"Re",
+				"restaurant"
+			],
+			[
+				"rest",
+				"restaurant"
+			],
+			[
+				"fi",
+				"filter_menu_restaurant"
+			],
+			[
+				"cre",
+				"createRestaurant"
+			],
+			[
+				"pl",
+				"polygon_paths_from_bounds"
+			],
+			[
+				"pol",
+				"polygon"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"chi",
+				"childRef"
+			],
+			[
+				"Reac",
+				"ReactFireMixin"
+			],
+			[
+				"prop",
+				"propTypes"
+			],
+			[
+				"show",
+				"showLogin"
+			],
+			[
+				"logi",
+				"login_selected"
+			],
+			[
+				"x",
+				"xScale"
+			],
+			[
+				"max",
+				"maxViews"
+			],
+			[
+				"vie",
+				"view_count"
+			],
+			[
+				"s",
+				"src"
+			],
+			[
+				"hote",
+				"hotel_loc	statement"
+			],
+			[
+				"c",
+				"continue	keyword"
+			],
+			[
+				"ta",
+				"takeTill"
+			],
+			[
+				"dis",
+				"distances	statement"
+			],
+			[
+				"dit",
+				"distances	statement"
+			],
+			[
+				"hid",
+				"hid_list	statement"
+			],
+			[
+				"hi",
+				"hid_reader	statement"
+			],
+			[
+				"lca",
+				"location_hid	statement"
+			],
+			[
+				"loc",
+				"location_hid	statement"
+			],
+			[
+				"dist",
+				"distance	statement"
+			],
+			[
+				"di",
+				"distance	statement"
+			],
+			[
+				"ht",
+				"hotel_loc"
+			],
+			[
+				"lon",
+				"long_place"
+			],
+			[
+				"loca",
+				"location_hid"
+			],
+			[
+				"h",
+				"hotel"
+			],
+			[
+				"la",
+				"lat_place"
+			],
+			[
+				"hid_",
+				"hid_reader"
+			],
+			[
+				"content",
+				"content_json"
+			],
+			[
+				"comm",
+				"comm-block	Comment - Block style comment"
+			],
+			[
+				"crea",
+				"createSchema"
+			],
+			[
+				"web",
+				"websudos"
+			],
+			[
+				"Str",
+				"StringColumn"
+			],
+			[
+				"K",
+				"KeySpace"
+			],
+			[
+				"cluster",
+				"cluster_json"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "server/src/github.com/shakdwipeea/main/server.go",
+			"settings":
+			{
+				"buffer_size": 1329,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/src/github.com/shakdwipeea/handlers/handlers.go",
+			"settings":
+			{
+				"buffer_size": 5785,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 143.0,
+		"last_filter": "proje",
+		"selected_items":
+		[
+			[
+				"proje",
+				"Project: Save As"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Anaconda: Show error list"
+			],
+			[
+				"show er",
+				"Anaconda: Show error list"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/akash/Kode/Radeon",
+		"/home/akash/Kode/Radeon/server",
+		"/home/akash/Kode/Radeon/server/src",
+		"/home/akash/Kode/Radeon/server/src/github.com",
+		"/home/akash/Kode/Radeon/server/src/github.com/shakdwipeea",
+		"/home/akash/Kode/Radeon/server/src/github.com/shakdwipeea/handlers",
+		"/home/akash/Kode/Radeon/server/src/github.com/shakdwipeea/main"
+	],
+	"file_history":
+	[
+		"/home/akash/.config/sublime-text-3/Packages/GoSublime/USAGE.md",
+		"/home/akash/.config/sublime-text-3/Packages/GoSublime/CHANGELOG.md",
+		"/home/akash/.config/sublime-text-3/Packages/User/GoSublime.sublime-settings",
+		"/home/akash/.config/sublime-text-3/Packages/GoSublime/GoSublime.sublime-settings",
+		"/home/akash/Kode/Radeon/exam.sublime-project",
+		"/home/akash/Kode/Radeon/app/src/dash/addQuestion/add.tpl",
+		"/home/akash/Kode/Radeon/app/src/dash/addQuestion/AddController.js",
+		"/home/akash/Kode/Radeon/app/src/components/UserFactory.js",
+		"/home/akash/Kode/Radeon/app/src/login/LoginController.js",
+		"/etc/nginx/sites-available/default",
+		"/home/akash/Kode/Check/gulpfile.js",
+		"/home/akash/Kode/Check/angular-gulp-browserify-starter/dist/index.html",
+		"/home/akash/Kode/Check/docs/commands.md",
+		"/home/akash/Kode/Final/log",
+		"/home/akash/Kode/Stayzilla/node-crawler/index.js",
+		"/home/akash/Kode/Final/out.csv",
+		"/home/akash/Kode/Final/index.js",
+		"/home/akash/Kode/Final/node_modules/worker.js",
+		"/home/akash/Downloads/test.py",
+		"/home/akash/Kode/Viands/.gitignore",
+		"/home/akash/Kode/Viands/routes/admin/offers.js",
+		"/home/akash/Kode/Viands/lib/copyS3.js",
+		"/home/akash/Kode/Viands/public/admin/javascripts/controllers/CreateBannerController.js",
+		"/home/akash/Kode/Viands/public/admin/javascripts/controllers/CreateOfferController.js",
+		"/home/akash/Kode/Viands/public/admin/templates/createOffer.ejs",
+		"/home/akash/Kode/Viands/lib/account_generator.js",
+		"/home/akash/Kode/Viands/deployTest.sh",
+		"/home/akash/Kode/Viands/routes/index.js",
+		"/home/akash/Kode/Viands/public/admin/javascripts/app.js",
+		"/home/akash/Kode/Viands/public/admin/templates/create.ejs",
+		"/home/akash/Kode/Viands/log",
+		"/home/akash/Kode/Viands/app.js",
+		"/home/akash/Kode/Bench/Round1.md",
+		"/home/akash/Kode/Bench/node/node2.md",
+		"/home/akash/Kode/Bench/node/node.md",
+		"/home/akash/Kode/Digital/app/components/Search.js",
+		"/home/akash/Kode/Viands/public/admin/templates/home.ejs",
+		"/home/akash/Kode/Viands/views/admin.ejs",
+		"/home/akash/Kode/Viands/lib/rvce_menu_creation.js",
+		"/home/akash/Kode/Viands/routes/restaurant/addRestaurant.js",
+		"/home/akash/Kode/Viands/README.md",
+		"/home/akash/Kode/Viands/public/javascripts/app.js",
+		"/home/akash/Kode/Viands/test/unit/restaurantSpec.js",
+		"/home/akash/Kode/Bench/scala/AkkaHttp/src/main/scala/AkkaHttpMicroservice.scala",
+		"/home/akash/Kode/Bench/go/server.go",
+		"/media/akash/343A718D3A714CBC/Raghav___back_up/ubuntu_21_June/Home/IdeaProjects/spray-template/src/main/scala/com/example/Boot.scala",
+		"/media/akash/343A718D3A714CBC/Raghav___back_up/ubuntu_21_June/Home/IdeaProjects/spray-template/src/main/scala/com/example/MyService.scala",
+		"/home/akash/Kode/Bench/go.md",
+		"/media/akash/343A718D3A714CBC/Raghav___back_up/ubuntu_21_June/Home/IdeaProjects/AkkaHttp/src/main/scala/AkkaHttpMicroservice.scala",
+		"/home/akash/Kode/Stayzilla/sz-auto-communication/test/unit/user.js",
+		"/home/akash/Kode/React/note/app/App.js",
+		"/home/akash/Kode/React/note/app/config/routes.js",
+		"/home/akash/Kode/React/note/app/components/Main.js",
+		"/home/akash/Kode/React/note/app/components/Home.js",
+		"/home/akash/Kode/React/note/package.json",
+		"/home/akash/Kode/React/note/webpack.config.js",
+		"/home/akash/Kode/React/note/app/components/App.js",
+		"/media/akash/343A718D3A714CBC/Raghav___back_up/ubuntu_21_June/Home/Kode/MovProj/public/javascript/app.js",
+		"/home/akash/Kode/website-viands/index.html",
+		"/home/akash/Kode/d3-cast/dist/scripts/app.js",
+		"/home/akash/Kode/Stayzilla/visualization/public/location_data.csv",
+		"/home/akash/Kode/Stayzilla/visualization/public/index.html",
+		"/home/akash/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/akash/Kode/Stayzilla/visualization/public/data_collector.py",
+		"/home/akash/Kode/Stayzilla/visualization/public/dendo2cluster.py",
+		"/home/akash/Kode/Stayzilla/visualization/public/data.csv",
+		"/home/akash/Kode/pass-gen-store/build.sbt",
+		"/home/akash/Kode/pass-gen-store/api.md",
+		"/home/akash/Kode/pass-gen-store/src/main/scala/com/example/Hello.scala",
+		"/home/akash/Kode/pass-gen-store/src/main/scala/com/example/User.scala",
+		"/home/akash/Kode/pass-gen-store/src/main/scala/com/example/Connector.scala",
+		"/home/akash/Kode/Stayzilla/visualization/cluster.json"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dist",
+			"{\n",
+			"Banner",
+			"banner",
+			"Banner",
+			"banner",
+			"Banner",
+			"banner",
+			"Banner",
+			"banner",
+			"Banner",
+			"banner",
+			"uploader",
+			"id",
+			"}\n",
+			";",
+			"cd-user-modal",
+			".abc",
+			"<!",
+			"560102",
+			"11578",
+			"560102",
+			"11578"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"public"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "server/src/github.com/shakdwipeea/main/server.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1329,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1061,
+								1061
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 864.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "server/src/github.com/shakdwipeea/handlers/handlers.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5785,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5168,
+								5168
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4803.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MarGo-output":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sbt":
+	{
+		"height": 0.0
+	},
+	"output.sbt_error":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "exam.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 269.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

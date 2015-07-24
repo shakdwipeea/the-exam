@@ -3,6 +3,7 @@ import (
 	"gopkg.in/mgo.v2"
 	"log"
 	"gopkg.in/mgo.v2/bson"
+	"errors"
 )
 
 const tagsCollectionName string = "Tags"
@@ -25,6 +26,10 @@ func (t *Tags) Get (db *mgo.Database) []Tags {
 }
 
 func (t *Tags) Add (db *mgo.Database) error {
+	if t.Name == "" {
+		return errors.New("Name not there Why???")
+	}
+
 	err := db.C(tagsCollectionName).
 				Insert(t)
 

@@ -54,25 +54,24 @@ gulp.task('server:spawn', function() {
         for (var l in lines)
             if (lines[l].length)
                 util.log(lines[l]);
+
     });
 
     /* Print errors to stdout */
     server.stderr.on('data', function(data) {
         process.stdout.write(data.toString());
     });
+
+    notifier.notify({
+        title: 'server restarted',
+        message: 'Hah mahanta'
+    })
 });
 
 /*
  * Watch source for changes and restart application server.
  */
 gulp.task('server:watch', function() {
-
-    /* Restart application server */
-    gulp.watch([
-        'app/**/*.js',
-        'app/**/*.html',
-        'app/**/*.tpl'
-    ], ['server:spawn']);
 
     /* Rebuild and restart application server */
     gulp.watch([

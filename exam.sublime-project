@@ -1,0 +1,17 @@
+{
+
+    "settings": {
+        "GoSublime": {
+            "env": {
+                "GOPATH": "/home/akash/Kode/Radeon/",
+                "GOBIN": "/home/akash/Kode/Radeon/bin"
+            }
+        }
+    },
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	]
+}
