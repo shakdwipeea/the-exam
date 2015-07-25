@@ -2,7 +2,7 @@
     <div class="hero">
 
             <div class="heading-hero container col-lg-offset-3 col-lg-9">
-                <h1 class="h1" id="heading-text">SPARKLING PHYSIC</h1>
+                <h1 class="h1" id="heading-text">SPARKLIN PHYSICS</h1>
             </div>
 
     </div>
