@@ -15,6 +15,7 @@
     "http-server": "^0.6.1",
     "karma": "~0.10",
     "karma-junit-reporter": "^0.2.2",
+    "light-server": "^1.0.3",
     "node-notifier": "^4.2.3",
     "protractor": "^2.0.0",
     "selenium-webdriver": "^2.45.1",

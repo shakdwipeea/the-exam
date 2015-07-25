@@ -11,7 +11,8 @@ var sync = require('gulp-sync')(gulp).sync;
 var server = null;
 var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
-var browserSync = require('browser-sync').create();
+var BrowserSync = require('browser-sync')
+    var browserSync = BrowserSync.create();
 /*
  * Build application server.
  */
@@ -78,7 +79,7 @@ gulp.task('server:watch', function() {
 
     /* Rebuild and restart application server */
     gulp.watch([
-        '*/**/*.go',
+        '*/**/*.go'
     ], sync([
         'server:build',
         'server:spawn'
@@ -109,16 +110,18 @@ gulp.task('watch', [
     ]);
 });
 
-gulp.task('client', function () {
-    gulp.watch(['./app/**/*.js', './app/**/ *.html', './app/**/*.tpl', './app/**/ *.css'])
-        .on('change', browserSync.reload)
+gulp.task('reload', function () {
 
     notifier.notify({
         title: 'client refreshed',
-        message: 'Hah mahanta'
+        message: 'Hah i'
     })
 });
 
+gulp.task('client', function () {
+   child.exec('light-server -s . -p 8000 -x http://localhost/')
+    console.log('serving on port 8000')
+});
 /**
  * For deploy
  * @type {{host: string, port: number, username: string, privateKey}}
@@ -154,4 +157,4 @@ gulp.task('deploy', function () {
 /*
  * Build assets by default.
  */
-gulp.task('default', ['build', 'watch', 'client']);
+gulp.task('default', ['build', 'watch']);
