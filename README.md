@@ -3,14 +3,11 @@
 > bower install
 > npm install
 
->There may be dependencies error
 
 ##Production
 
-> Simply run the binary in server/bin
+> use gulp deploy specify the correct config as per your server
 
 ##Development
 
 > run gulp
-> cd app
-> live-server
