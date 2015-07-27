@@ -371,10 +371,10 @@ func (m *Mongo) GetQuestions(c *gin.Context) {
 
 func (m *Mongo) AddTest(c *gin.Context) {
 	var addTestInput struct {
-		Token string
-		Ids   []string
-		Name  string
-		Group string
+		Token string `json:"token"`
+		Ids   []string `json:"ids"`
+		Name  string `json:"name"`
+		Group string `json:"group"`
 	}
 
 	//Parse the req body
@@ -405,9 +405,16 @@ func (m *Mongo) AddTest(c *gin.Context) {
 
 	var questionIds []bson.ObjectId
 	//convert string ids to object ids
-	for i, e := range addTestInput.Ids {
-		// todo it may throw runtime panic add error handling
-		questionIds[i] = bson.ObjectIdHex(e)
+
+	for _, e := range addTestInput.Ids {
+		if (bson.IsObjectIdHex(e)) {
+			log.Println("The objectid for")
+			questionIds = append(questionIds, bson.ObjectIdHex(e))
+		} else {
+			utils.ErrorResponse(c, http.StatusInternalServerError, "ITS NOT U ITS ME ")
+			return
+		}
+
 	}
 
 	test.Subject = subject
@@ -420,6 +427,7 @@ func (m *Mongo) AddTest(c *gin.Context) {
 	err = test.AddTest(m.Database)
 
 	if err != nil {
+		log.Println("The funckin eeror", err)
 		utils.ErrorResponse(c, http.StatusInternalServerError, "Cannot Insert")
 		return
 	}
@@ -470,8 +478,13 @@ func (m *Mongo) GetTest(c *gin.Context) {
 
 	var test models.Test
 	test.Subject = subject
-	//todo it may throw runtime panic add error handling
-	test.Id = bson.ObjectIdHex(id)
+	if bson.IsObjectIdHex(id) {
+		test.Id = bson.ObjectIdHex(id)
+	} else {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Oh boy not again")
+		return
+	}
+
 	test, err = test.GetTest(m.Database)
 
 	if err != nil {

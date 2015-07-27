@@ -19,7 +19,7 @@ type Question struct {
 }
 
 func (q *Question) AddQuestion (db *mgo.Database) error {
-	/*	q.Id = new(bson.ObjectId)*/
+	q.Id = bson.NewObjectId()
 
 	err := db.C(questionCollectionName).
 		Insert(q)

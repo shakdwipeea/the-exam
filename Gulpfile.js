@@ -13,7 +13,6 @@ var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var shell = require('gulp-shell');
-var mongodb = require('mongodb');
 /*
  * Build application server.
  */
@@ -180,13 +179,6 @@ gulp.task('deploy', function () {
            filepath: 'shell.log'
        })
        .pipe(gulp.dest("logs"))
-
-});
-
-/**
- * Migration of db
- */
-gulp.task('migrate', function () {
 
 });
 

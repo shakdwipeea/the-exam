@@ -12,7 +12,8 @@ angular.module('question')
             questions = null,
             checkedQuestion = {
                 ids: [],
-                name: null
+                name: null,
+                group: null
             };
 
         var login = function (userData) {
@@ -92,9 +93,10 @@ angular.module('question')
             return !!token;
         };
 
-        function setTestQuestionDetails(name, ids) {
+        function setTestQuestionDetails(name, group, ids) {
             checkedQuestion.name = name;
             checkedQuestion.ids = ids;
+            checkedQuestion.group = group;
         }
 
         function getQuestionDetails() {
@@ -105,10 +107,19 @@ angular.module('question')
          * post TO /TEST returns a promise after creating a test
          */
         function createTest() {
-            /**
-             * todo call the api
-             */
-            throw new Error("Not Implemented");
+            //get id from indexes
+            var ids = [];
+
+            checkedQuestion.ids.forEach(function (id) {
+                ids.push(questions[id].Id);
+            });
+
+            return $http.post(Host.add + '/secure/test', {
+                token: token,
+                ids: ids,
+                name: checkedQuestion.name,
+                group: checkedQuestion.group
+            })
         }
 
         return {

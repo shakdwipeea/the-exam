@@ -18,6 +18,8 @@ type Test struct {
 
 //add a test
 func (t *Test) AddTest(db *mgo.Database) error {
+	t.Id = bson.NewObjectId()
+
 	return db.C(testCollectionName).
 	Insert(t)
 }

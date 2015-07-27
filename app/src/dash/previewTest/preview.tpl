@@ -1,6 +1,7 @@
 <div class="row">
     <div class="test-name col-lg-8">{{preview.name}}</div>
     <div data-ng-click="preview.createTest()" class="btn btn-primary create-test col-lg-4">
+        <toaster-container></toaster-container>
         {{preview.submitButtonText}}
     </div>
 </div>

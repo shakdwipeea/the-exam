@@ -46,7 +46,7 @@ angular.module('question')
             }
 
             // store the checked questions in a factory
-            User.setTest(self.name, ids);
+            User.setTest(self.name, self.group, ids);
 
             // redirect to preview page
             $state.go('dash.preview');
