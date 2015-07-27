@@ -57,8 +57,13 @@ func main() {
 	*/
 	secure := router.Group("/secure")
 	{
-		secure.POST("/add_question", mongo.AddQuestion)
+		secure.POST("/question", mongo.AddQuestion)
 		secure.POST("/tags", mongo.AddTag)
+		secure.GET("/question", mongo.GetQuestions)
+
+		secure.POST("/test", mongo.AddTest)
+		secure.GET("/test", mongo.GetAllTest)
+		secure.GET("/test:id", mongo.GetTest)
 	}
 
 	/**

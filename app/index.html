@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"/>
@@ -63,7 +63,7 @@
 
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>">
+</script>
 
   <script type="text/x-mathjax-config">
 	MathJax.Hub.Config({
@@ -74,20 +74,23 @@
 	});
   </script>
 
-<!--  &lt;!&ndash; jQuery &ndash;&gt;
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>-->
 
   <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
 
+  <!--Production
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
+  -->
 
-
+  <script src="public/bower_components/angular/angular.min.js"></script>
+  <script src="public/bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="public/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="public/bower_components/angularjs-toaster/toaster.min.js"></script>
   <script src="public/src/app.js"></script>
 
     <!--Factories -->
@@ -101,6 +104,8 @@
   <script src="public/src/dash/DashController.js"></script>
   <script src="public/src/dash/welcome/WelcomeController.js"></script>
   <script src="public/src/dash/addQuestion/AddController.js"></script>
+  <script src="public/src/dash/createTest/CreateTestController.js"></script>
+  <script src="public/src/dash/previewTest/PreviewController.js"></script>
 <!--  &lt;!&ndash; Custom Theme JavaScript &ndash;&gt;
   <script src="src/grayscale.js"></script>-->
   </body>

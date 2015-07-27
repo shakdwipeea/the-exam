@@ -179,3 +179,23 @@ span.name {
   font-size: 113px;
   color: white;
 }
+
+.bottom-bar {
+    padding-top: 12px;
+}
+
+.bottom-bar-container {
+    background-color: #9E9E9E;
+}
+
+.test-name {
+    display: inline;
+    padding: 12px;
+    left: 43px;
+}
+
+.create-test {
+    width: 20%;
+
+    margin-bottom: 12px;
+}

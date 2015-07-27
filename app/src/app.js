@@ -31,6 +31,16 @@
 							templateUrl: '/public/src/dash/addQuestion/add.tpl',
 							controller: 'AddController as add'
 						})
+						.state('dash.createTest', {
+							url: '/test',
+							templateUrl: '/public/src/dash/createTest/createTest.tpl',
+							controller: 'CreateTestController as test'
+						})
+						.state('dash.preview', {
+							url: '/preview',
+							templateUrl: '/public/src/dash/previewTest/preview.tpl',
+							controller: 'PreviewController as preview'
+						})
 				;
 			});
 

@@ -12,13 +12,28 @@ var server = null;
 var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
+var shell = require('gulp-shell');
+var mongodb = require('mongodb');
 /*
  * Build application server.
  */
 gulp.task('server:build', function() {
-    child.execSync('export GOPATH=/home/akash/Kode/Radeon/server/');
-    child.execSync('export GOBIN=$GOPATH/bin');
-    var build = child.spawnSync('go', ['install', 'server/src/github.com/shakdwipeea/main/server.go']);
+
+    /*        var init = shell.task(['export GOPATH=/home/akash/Kode/Radeon/server/',
+     'export GOBIN=$GOPATH/bin',
+     'go install',
+     'server/src/github.com/shakdwipeea/main/server.go']);*/
+    var myVar = {
+        'GOPATH': '/home/akash/Kode/Radeon/server',
+        'GOBIN': '/home/akash/Kode/Radeon/server/bin'
+    };
+
+    process.env['GOPATH'] = myVar.GOPATH;
+    process.env['GOBIN'] = myVar.GOBIN;
+    var build = child.spawnSync('go', ['install', 'server/src/github.com/shakdwipeea/main/server.go'], {
+        env: process.env
+    });
+
     if (build.stderr.length) {
         var lines = build.stderr.toString()
             .split('\n').filter(function(line) {
@@ -65,12 +80,14 @@ gulp.task('server:spawn', function() {
         process.stdout.write(data.toString());
     });
 
-    browserSync.init({
-        notify: false,
-        open: false,
-        port: 3000,
-        proxy: 'http://localhost'
-    });
+    if (!browserSync.active) {
+        browserSync.init({
+            notify: false,
+            open: false,
+            port: 3000,
+            proxy: 'http://localhost'
+        });
+    }
 
     notifier.notify({
         title: 'server restarted',
@@ -163,6 +180,13 @@ gulp.task('deploy', function () {
            filepath: 'shell.log'
        })
        .pipe(gulp.dest("logs"))
+
+});
+
+/**
+ * Migration of db
+ */
+gulp.task('migrate', function () {
 
 });
 

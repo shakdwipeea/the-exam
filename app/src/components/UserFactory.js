@@ -8,7 +8,12 @@ angular.module('question')
 .factory('User', function ($http, Host) {
         var token = null,
             subject = null,
-            username = null;
+            username = null,
+            questions = null,
+            checkedQuestion = {
+                ids: [],
+                name: null
+            };
 
         var login = function (userData) {
             console.log(userData);
@@ -43,13 +48,30 @@ angular.module('question')
                 };
 
                 console.log(requestBody);
-                return $http.post(Host.add + '/secure/add_question', requestBody);
+                return $http.post(Host.add + '/secure/question', requestBody);
             } else {
                 console.log('This hould not be happening');
                 return new Error("Go to hell");
             }
 
         };
+
+        function getQuestions() {
+            if (questions) {
+                return questions;
+            } else {
+                return $http({
+                    method: 'GET',
+                    url: Host.add + '/secure/question',
+                    params: {
+                        token: token
+                    }
+                }).then(function (response) {
+                    questions = response.data.questions;
+                    return response;
+                });
+            }
+        }
 
         var addTag = function (tag) {
             if (token && tag.name) {
@@ -67,11 +89,26 @@ angular.module('question')
         };
 
         var isToken = function() {
-            if (token) {
-                return true;
-            } else {
-                return false;
-            }
+            return !!token;
+        };
+
+        function setTestQuestionDetails(name, ids) {
+            checkedQuestion.name = name;
+            checkedQuestion.ids = ids;
+        }
+
+        function getQuestionDetails() {
+            return checkedQuestion;
+        }
+
+        /**
+         * post TO /TEST returns a promise after creating a test
+         */
+        function createTest() {
+            /**
+             * todo call the api
+             */
+            throw new Error("Not Implemented");
         }
 
         return {
@@ -79,6 +116,10 @@ angular.module('question')
             add: addQuestion,
             newTag: addTag,
             getTags: getTags,
-            isLoggedIn: isToken
+            isLoggedIn: isToken,
+            getQuestions: getQuestions,
+            setTest: setTestQuestionDetails,
+            getTest: getQuestionDetails,
+            createTest: createTest
         }
 });

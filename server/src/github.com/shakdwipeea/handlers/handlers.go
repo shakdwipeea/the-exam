@@ -9,10 +9,10 @@ import (
 	"log"
 	"net/http"
 	"time"
-	"errors"
+	"gopkg.in/mgo.v2/bson"
 )
 
-const mySigningKey string = "madh165r35##@@#"
+
 
 /**
 The database struct which contains all the handlers
@@ -123,7 +123,7 @@ func (mongo *Mongo) Login(c *gin.Context) {
 		println(err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"err": true,
-			"msg": "Error parsing reques",
+			"msg": "Error parsing request.",
 		})
 		return
 	}
@@ -146,7 +146,7 @@ func (mongo *Mongo) Login(c *gin.Context) {
 		token.Claims["subject"] = teacher.Subject
 		token.Claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
-		tokenString, err := token.SignedString([]byte(mySigningKey))
+		tokenString, err := token.SignedString([]byte(utils.MySigningKey))
 
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
@@ -158,14 +158,14 @@ func (mongo *Mongo) Login(c *gin.Context) {
 
 		c.JSON(http.StatusOK, gin.H{
 			"err":     false,
-			"msg":     "Got ",
+			"msg":     "Got",
 			"teacher": teacher,
 			"token":   tokenString,
 		})
 	} else {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"err": true,
-			"msg": "Not found",
+			"msg": "Not found.",
 		})
 	}
 }
@@ -210,7 +210,7 @@ func (mongo *Mongo) AddQuestion(c *gin.Context) {
 
 		})*/
 
-		token,err := jwtAuthenticator(QuestionInput.Token)
+		token, err := utils.JwtAuthenticator(QuestionInput.Token)
 
 		if err == nil && token.Valid &&
 			token.Claims["subject"] == QuestionInput.Subject  {
@@ -292,7 +292,7 @@ func (mongo *Mongo) AddTag(c *gin.Context) {
 		return
 	}
 
-	token,err1 := jwtAuthenticator(tagInput.Token)
+	token, err1 := utils.JwtAuthenticator(tagInput.Token)
 
 	if err1 != nil || !token.Valid {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -320,17 +320,177 @@ func (mongo *Mongo) AddTag(c *gin.Context) {
 
 }
 
-func jwtAuthenticator (token string) (*jwt.Token,error) {
-	parsedToken, err := jwt.Parse(token, func (token *jwt.Token) (interface {}, error) {
-/*		if _,ok := token.Method.(*jwt.SigningMethodHS256); !ok {
-			return nil, errors.New("Wrong token")
-		}*/
-		return []byte(mySigningKey), nil
-	})
+/**
+	handlers to retrieve questions
+	from database
+ */
+func (m *Mongo) GetQuestions(c *gin.Context) {
 
-	if err != nil && !parsedToken.Valid {
-		return nil,errors.New("Tampered Token")
+	tokenForm := c.Query("token")
+
+	if tokenForm == "" {
+		log.Println("HUW", tokenForm)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"err": "Parse error",
+		})
+		return
 	}
 
-	return parsedToken, nil
+	token, err := utils.JwtAuthenticator(tokenForm)
+
+	if err != nil {
+		c.JSON(http.StatusForbidden, gin.H{
+			"err": "Log In Again",
+		})
+		return
+	}
+
+	subject, ok := token.Claims["subject"].(string)
+
+	if !ok {
+		c.JSON(http.StatusForbidden, gin.H{
+			"err": "Log In Again",
+		})
+		return
+	}
+
+	questions, err := new(models.Question).GetQuestionsOfSubject(m.Database, subject)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": err,
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err": nil,
+		"questions": questions,
+	})
 }
+
+func (m *Mongo) AddTest(c *gin.Context) {
+	var addTestInput struct {
+		Token string
+		Ids   []string
+		Name  string
+		Group string
+	}
+
+	//Parse the req body
+	err := c.BindJSON(&addTestInput)
+
+	if err != nil {
+		//send the incorrect response
+		utils.ErrorResponse(c, http.StatusBadRequest, "Parse error")
+		return
+	}
+
+	//check the token
+	token, err := utils.JwtAuthenticator(addTestInput.Token)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusForbidden, "Log In again")
+		return;
+	}
+
+	var test models.Test
+
+	subject, ok := token.Claims["subject"].(string)
+
+	if !ok {
+		utils.ErrorResponse(c, http.StatusForbidden, "Log In again")
+		return;
+	}
+
+	var questionIds []bson.ObjectId
+	//convert string ids to object ids
+	for i, e := range addTestInput.Ids {
+		// todo it may throw runtime panic add error handling
+		questionIds[i] = bson.ObjectIdHex(e)
+	}
+
+	test.Subject = subject
+	test.QuestionIds = questionIds
+	test.Name = addTestInput.Name
+	test.Group = addTestInput.Group
+	test.Enable = false
+
+	//add test to database
+	err = test.AddTest(m.Database)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Cannot Insert")
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err": nil,
+	})
+
+}
+
+func (m *Mongo) GetAllTest(c *gin.Context) {
+	tokenReceived := c.Query("token")
+
+	subject, err := utils.AuthenticateTokenGetSubject(tokenReceived)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusForbidden, "Log In Again")
+		return
+	}
+
+
+	var test models.Test
+	test.Subject = subject
+
+	tests, err := test.GetAllTest(m.Database)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Could not retreive test")
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err": nil,
+		"tests": tests,
+	})
+}
+
+func (m *Mongo) GetTest(c *gin.Context) {
+	tokenReceived := c.Query("token")
+	id := c.Param("id")
+
+	subject, err := utils.AuthenticateTokenGetSubject(tokenReceived)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusForbidden, "Log in again")
+		return
+	}
+
+	var test models.Test
+	test.Subject = subject
+	//todo it may throw runtime panic add error handling
+	test.Id = bson.ObjectIdHex(id)
+	test, err = test.GetTest(m.Database)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Could not get the test")
+		return
+	}
+
+	/**
+	todo get all questions for this test
+	should be probably done with go routines for
+	imporved performance
+	 */
+
+	c.JSON(http.StatusOK, gin.H{
+		"err": nil,
+		"test": test,
+	})
+}
+
+
+
+
