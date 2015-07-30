@@ -63,7 +63,7 @@ func main() {
 
 		secure.POST("/test", mongo.AddTest)
 		secure.GET("/test", mongo.GetAllTest)
-		secure.GET("/test:id", mongo.GetTest)
+		secure.GET("/test/:id", mongo.GetTest)
 	}
 
 	/**

@@ -196,6 +196,10 @@ span.name {
 
 .create-test {
     width: 20%;
-
     margin-bottom: 12px;
 }
+
+.tests {
+  width: 80%;
+}
+

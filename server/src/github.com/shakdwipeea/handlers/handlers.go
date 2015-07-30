@@ -475,7 +475,7 @@ func (m *Mongo) GetTest(c *gin.Context) {
 		utils.ErrorResponse(c, http.StatusForbidden, "Log in again")
 		return
 	}
-
+	log.Println("thr dod", id)
 	var test models.Test
 	test.Subject = subject
 	if bson.IsObjectIdHex(id) {
@@ -495,13 +495,34 @@ func (m *Mongo) GetTest(c *gin.Context) {
 	/**
 	todo get all questions for this test
 	should be probably done with go routines for
-	imporved performance
+	improved performance
 	 */
+	var questions []models.Question
+	for _, id := range test.QuestionIds {
+		temp_question, err := getQuestion(m.Database, id)
+
+		if err != nil {
+			log.Println("Somethin's up ", err)
+		} else {
+			questions = append(questions, temp_question)
+		}
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"err": nil,
 		"test": test,
+		"questions": questions,
 	})
+}
+
+func getQuestion(db *mgo.Database, questionId bson.ObjectId) (models.Question, error) {
+	question, err := new(models.Question).GetQuestion(db, questionId)
+
+	if err != nil {
+		return question, err
+	}
+
+	return question, nil
 }
 
 

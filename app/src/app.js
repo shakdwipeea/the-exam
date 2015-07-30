@@ -37,9 +37,14 @@
 							controller: 'CreateTestController as test'
 						})
 						.state('dash.preview', {
-							url: '/preview',
+							url: '/preview/:testId',
 							templateUrl: '/public/src/dash/previewTest/preview.tpl',
 							controller: 'PreviewController as preview'
+						})
+						.state('dash.view', {
+							url: '/view',
+							templateUrl: '/public/src/dash/viewTests/view.tpl',
+							controller: 'ViewController as view'
 						})
 				;
 			});

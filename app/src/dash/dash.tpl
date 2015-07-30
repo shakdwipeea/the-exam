@@ -7,7 +7,8 @@
                         ui-sref="dash.add"> Add A Question</a></li>
                 <li role="presentation" ng-class="{ 'active': select == 'test' }" ng-click="select = 'test'"><a
                         ui-sref="dash.createTest">New Test</a> </a></li>
-                <li role="presentation"><a href="#"> View Tests</a></li>
+                <li role="presentation" ng-class="{ 'active': select == 'view' }" ng-click="select = 'view'"><a
+                        ui-sref="dash.view"> View Tests</a></li>
             </ul>
         </nav>
     </div>

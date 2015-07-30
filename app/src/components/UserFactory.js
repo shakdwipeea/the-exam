@@ -93,6 +93,10 @@ angular.module('question')
             return !!token;
         };
 
+        function getToken() {
+            return token;
+        }
+
         function setTestQuestionDetails(name, group, ids) {
             checkedQuestion.name = name;
             checkedQuestion.ids = ids;
@@ -131,6 +135,7 @@ angular.module('question')
             getQuestions: getQuestions,
             setTest: setTestQuestionDetails,
             getTest: getQuestionDetails,
-            createTest: createTest
+            createTest: createTest,
+            getToken: getToken
         }
 });

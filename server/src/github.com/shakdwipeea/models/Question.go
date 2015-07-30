@@ -37,8 +37,21 @@ func (q *Question) GetQuestionsOfSubject(db *mgo.Database, subject string) ([]Qu
 	All(&questions)
 
 	if err != nil {
-		return nil, err
+		return questions, err
 	}
 
 	return questions, nil
+}
+
+func (q *Question) GetQuestion(db *mgo.Database, id bson.ObjectId) (Question, error) {
+	var question Question
+	err := db.C(questionCollectionName).Find(bson.M{
+		"_id": id,
+	}).One(&question)
+
+	if err != nil {
+		return question, err
+	}
+
+	return question, nil
 }
