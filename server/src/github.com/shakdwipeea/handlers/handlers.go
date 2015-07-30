@@ -525,6 +525,46 @@ func getQuestion(db *mgo.Database, questionId bson.ObjectId) (models.Question, e
 	return question, nil
 }
 
+func (m *Mongo) EnableTest(c *gin.Context) {
+	tokenReceived := c.Query("token")
+	id := c.Param("id")
+	enabler := c.Query("enable")
+
+	subject, err := utils.AuthenticateTokenGetSubject(tokenReceived)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusForbidden, "Log in again")
+		return
+	}
+	log.Println("thr dod", id)
+	var test models.Test
+	test.Subject = subject
+	if bson.IsObjectIdHex(id) {
+		test.Id = bson.ObjectIdHex(id)
+	} else {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Oh boy not again")
+		return
+	}
+
+	if enabler == "true" {
+		test.Enable = false
+	} else {
+		test.Enable = true
+	}
+
+	err = test.SetTestProps(m.Database)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Could not get the test")
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err": nil,
+	})
+}
+
+
 
 
 

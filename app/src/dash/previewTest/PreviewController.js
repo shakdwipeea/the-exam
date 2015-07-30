@@ -25,7 +25,7 @@ angular.module('question')
                 //get details for this id
                 Test.getTestById(testId)
                     .then(function (response) {
-                        self.name = response.data.test.name;
+                        self.name = response.data.test.Name;
                         self.submitButtonText = "Edit test";
                         self.questions = response.data.questions;
                     })

@@ -39,6 +39,17 @@ angular.module('question')
                     console.log(reason);
                     return reason;
                 })
+            },
+
+            enableTest: function (id, enable) {
+                return $http({
+                    method: 'GET',
+                    url: Host.add + '/secure/enable/' + id,
+                    params: {
+                        token: User.getToken(),
+                        enable: enable
+                    }
+                });
             }
         }
     }]);
