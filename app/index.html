@@ -1,113 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" >
-  <head>
-    <title>The Exam</title>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"/>
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+</head>
+<body ng-app="student" ng-controller="MainController as main">
 
-    <link rel="stylesheet" href="public/assets/app.css"/>
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Sparkling Physics</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+        </div>
+    </header>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div ng-show="main.progress" class="mdl-grid"><!-- MDL Spinner Component -->
+                <div class="mdl-cell mdl-cell--5-col"></div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <div id="spinner" class=" mdl-spinner mdl-js-spinner is-active"></div>
+                </div>
+            </div>
+            <ui-view></ui-view>
+        </div>
+    </main>
+    <toaster-container></toaster-container>
+</div>
 
-  </head>
-
-  <body ng-app="question" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" >
-
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-default "role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-          <i class="fa fa-bars"></i>
-        </button>
-        <a class="navbar-brand page-scroll" ui-sref="home">
-          <i class="fa fa-play-circle"></i> <span class="light">Sparkling</span> Physics
-        </a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-        <ul class="nav navbar-nav">
-          <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-          <li class="hidden">
-            <a href="#page-top"></a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#about">About</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#download">Download</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#contact">Contact</a>
-          </li>
-          <li>
-            <a class="page-scroll" ui-sref="main">Login</a>
-          </li>
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-  </nav>
-        <div ui-view></div>
-
-  <!-- Footer -->
-
-<script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-
-  <script type="text/x-mathjax-config">
-	MathJax.Hub.Config({
-		tex2jax: {
-		    inlineMath: [['$','$'], ['\\(','\\)']],
-		    processEscapes: true
-		    }
-	});
-  </script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="public/assets/student.css">
 
 
-  <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-
-  <!--Production
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
-  -->
-
-  <script src="public/bower_components/angular/angular.min.js"></script>
-  <script src="public/bower_components/angular-animate/angular-animate.min.js"></script>
-  <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="public/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script src="public/bower_components/angularjs-toaster/toaster.min.js"></script>
-  <script src="public/src/app.js"></script>
-
-    <!--Factories -->
-  <script src="public/src/components/UserFactory.js"></script>
-  <script src="public/src/components/TestFactory.js"></script>
-    <!--Directives -->
-  <script src="public/src/components/MathJax.js"></script>
-
-    <!--Controllers-->
-  <script src="public/src/login/LoginController.js"></script>
-  <script src="public/src/dash/DashController.js"></script>
-  <script src="public/src/dash/welcome/WelcomeController.js"></script>
-  <script src="public/src/dash/addQuestion/AddController.js"></script>
-  <script src="public/src/dash/createTest/CreateTestController.js"></script>
-  <script src="public/src/dash/previewTest/PreviewController.js"></script>
-  <script src="public/src/dash/viewTests/ViewController.js"></script>
-<!--  &lt;!&ndash; Custom Theme JavaScript &ndash;&gt;
-  <script src="src/grayscale.js"></script>-->
-  </body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
+<script src="public/dist/student.js"></script>
+</body>
 </html>

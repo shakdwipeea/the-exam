@@ -46,6 +46,10 @@ func main() {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 
+	router.GET("/admin", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "admin.html", gin.H{})
+	})
+
 	/**
 	API Routes
 	*/
@@ -72,6 +76,16 @@ func main() {
 	for static files
 	*/
 	router.Static("/public", "./app/")
+
+
+	/**
+	Routes for students
+	 */
+
+	router.GET("/usernames", mongo.GetUserNames)
+	router.POST("/login", mongo.Login)
+	router.POST("/signup", mongo.SignUp)
+	router.GET("/tests", mongo.GetTest)
 
 	/**
 	Run the server

@@ -70,3 +70,13 @@ func (t *Test) SetTestProps(db *mgo.Database) error {
 		"_id": t.Id,
 	}, change)
 }
+
+func GetEnabledByGroup(db *mgo.Database, group string) ([]Test, error) {
+	var tests []Test
+	err := db.C(testCollectionName).Find(bson.M{
+		"enable": true,
+		"group": group,
+	}).All(&tests)
+
+	return tests, err
+}

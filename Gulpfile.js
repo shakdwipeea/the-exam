@@ -13,6 +13,10 @@ var GulpSSH = require('gulp-ssh');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var shell = require('gulp-shell');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate');
+var sourcemaps = require('gulp-sourcemaps');
 /*
  * Build application server.
  */
@@ -116,7 +120,9 @@ gulp.task('server:watch', function() {
  * Build assets and application server.
  */
 gulp.task('build', [
-    'server:build'
+    'server:build',
+    'admin-build',
+    'student-build'
 ]);
 
 /*
@@ -132,7 +138,7 @@ gulp.task('watch', [
     ]);
 });
 
-gulp.task('reload', function () {
+gulp.task('reload', ['admin-build', 'student-build'], function () {
 
     notifier.notify({
         title: 'client refreshed',
@@ -180,6 +186,27 @@ gulp.task('deploy', function () {
        })
        .pipe(gulp.dest("logs"))
 
+});
+
+gulp.task('admin-build', function () {
+    return gulp.src(['app/src/admin/app.js', 'app/src/admin/**/*.js'])
+        .pipe(sourcemaps.init())
+        .pipe(concat('admin.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('app/dist/'))
+
+});
+
+gulp.task('student-build', function () {
+    return gulp.src(['app/src/student/app.js', 'app/src/student/**/*.js'])
+        .pipe(sourcemaps.init())
+        .pipe(concat('student.js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('app/dist/'))
 });
 
 /*
