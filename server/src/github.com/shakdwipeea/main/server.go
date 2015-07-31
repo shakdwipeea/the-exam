@@ -83,9 +83,11 @@ func main() {
 	 */
 
 	router.GET("/usernames", mongo.GetUserNames)
-	router.POST("/login", mongo.Login)
-	router.POST("/signup", mongo.SignUp)
-	router.GET("/tests", mongo.GetTest)
+	router.POST("/studentLogin", mongo.StudentLogin)
+	router.POST("/studentSignup", mongo.StudentSignUp)
+
+	//refactor and combine with single /test
+	router.GET("/getTests", mongo.GetExams)
 
 	/**
 	Run the server

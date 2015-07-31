@@ -10,7 +10,7 @@ const studentCollectionName string = "Student"
 type Student struct {
 	Username string
 	Password string
-	Group string
+	Group    []string
 }
 
 func GetUserNames(db *mgo.Database) ([]string, error) {
@@ -44,4 +44,12 @@ func (s *Student) CheckUserPassword(db *mgo.Database) (Student, error) {
 	}).One(&stud)
 
 	return stud, err
+}
+
+func (s *Student) GetGroup(db *mgo.Database) ([]string, error) {
+	err := db.C(studentCollectionName).Find(bson.M{
+		"username": s.Username,
+	}).One(&s)
+
+	return s.Group, err
 }

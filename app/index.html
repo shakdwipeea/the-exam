@@ -4,47 +4,53 @@
     <meta charset="UTF-8">
     <title>Exam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="public/assets/student.css">
 </head>
 <body ng-app="student" ng-controller="MainController as main">
 
-<!-- Always shows a header, even in smaller screens. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title">Sparkling Physics</span>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation. We hide it in small screens. -->
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Sparkling Physics</a>
         </div>
-    </header>
-    <main class="mdl-layout__content">
-        <div class="page-content">
-            <div ng-show="main.progress" class="mdl-grid"><!-- MDL Spinner Component -->
-                <div class="mdl-cell mdl-cell--5-col"></div>
-                <div class="mdl-cell mdl-cell--6-col">
-                    <div id="spinner" class=" mdl-spinner mdl-js-spinner is-active"></div>
+    </nav>
+        </div>
+<div>
+    <div class="row">
+        <div ng-show="main.progress" class="col s6 offset-s5">
+            <div class="preloader-wrapper active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
             </div>
-            <ui-view></ui-view>
         </div>
-    </main>
-    <toaster-container></toaster-container>
+
+    </div>
+    <ui-view></ui-view>
+
+    <toaster-container class="hide-on-mobile"></toaster-container>
+</div>
 </div>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="public/assets/student.css">
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-animate.min.js"></script>
-<script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.js"></script>
+
+
 <script src="public/dist/student.js"></script>
 </body>
 </html>

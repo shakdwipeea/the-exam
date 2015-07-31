@@ -17,6 +17,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
 var sourcemaps = require('gulp-sourcemaps');
+var jsHint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 /*
  * Build application server.
  */
@@ -153,7 +155,7 @@ gulp.task('client', function () {
             message: 'Error browser sync not active'
         })
     }
-    gulp.watch(['app/**/*.js', 'app/*.html', 'app/**/*.tpl', 'app/assets/*.css'], ['reload', browserSync.reload])
+    gulp.watch(['app/**/*.js', 'app/*.html', 'app/**/*.tpl', 'app/assets/*.css'], ['admin-build', 'student-build', browserSync.reload])
     console.log('serving on port 8000')
 });
 /**
@@ -194,20 +196,23 @@ gulp.task('admin-build', function () {
         .pipe(concat('admin.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest('app/dist/'))
 
 });
 
 gulp.task('student-build', function () {
     return gulp.src(['app/src/student/app.js', 'app/src/student/**/*.js'])
-        .pipe(sourcemaps.init())
         .pipe(concat('student.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest('app/dist/'))
 });
+
+gulp.task('lint', function () {
+    return gulp.src('app/src/student/**/*.js')
+        .pipe(jsHint('.jshintrc'))
+        .pipe(jsHint.reporter(stylish))
+})
 
 /*
  * Build assets by default.

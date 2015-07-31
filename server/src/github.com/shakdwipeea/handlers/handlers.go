@@ -469,7 +469,7 @@ func (m *Mongo) GetTest(c *gin.Context) {
 	tokenReceived := c.Query("token")
 	id := c.Param("id")
 
-	subject, err := utils.AuthenticateTokenGetSubject(tokenReceived)
+	_, err := utils.JwtAuthenticator(tokenReceived)
 
 	if err != nil {
 		utils.ErrorResponse(c, http.StatusForbidden, "Log in again")
@@ -477,7 +477,7 @@ func (m *Mongo) GetTest(c *gin.Context) {
 	}
 	log.Println("thr dod", id)
 	var test models.Test
-	test.Subject = subject
+
 	if bson.IsObjectIdHex(id) {
 		test.Id = bson.ObjectIdHex(id)
 	} else {

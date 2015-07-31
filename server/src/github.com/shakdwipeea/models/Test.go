@@ -46,7 +46,6 @@ func (t *Test) GetTest(db *mgo.Database) (Test, error) {
 	var test Test
 	err := db.C(testCollectionName).Find(bson.M{
 		"_id": t.Id,
-		"subject": t.Subject,
 	}).One(&test)
 
 	if err != nil {

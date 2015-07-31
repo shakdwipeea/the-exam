@@ -35,6 +35,7 @@ func JwtAuthenticator(token string) (*jwt.Token, error) {
 	})
 
 	if err != nil && !parsedToken.Valid {
+		println("Tampereed Token")
 		return nil, errors.New("Tampered Token")
 	}
 

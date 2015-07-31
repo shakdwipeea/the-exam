@@ -1,0 +1,13 @@
+.ak-active-tab {
+	color: blue !important;
+}
+
+@media screen and (max-width: 600px) {
+	#toast-container.hide-on-mobile {
+		display: none;
+	}
+}
+
+.ak-error-notify {
+	color: red;
+}

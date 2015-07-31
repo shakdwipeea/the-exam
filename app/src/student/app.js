@@ -11,7 +11,26 @@
 
                 .state('account', {
                     url: '/account',
-                    templateUrl: dir + 'account/account.tpl'
+                    templateUrl: dir + 'account/account.tpl',
+                    controller: 'AccountController as account'
+                })
+
+                .state('account.login', {
+                    url: '/login',
+                    templateUrl: dir + 'account/login/login.tpl',
+                    controller: 'LoginController as login'
+                })
+
+                .state('account.signup', {
+                    url: '/signup',
+                    templateUrl: dir + 'account/signup/signup.tpl',
+                    controller: 'SignUpController as signup'
+                })
+
+                .state('exam', {
+                    url: '/exam',
+                    templateUrl: dir + 'exam/exam.tpl',
+                    controller: 'ExamController as exam'
                 })
 
             ;
