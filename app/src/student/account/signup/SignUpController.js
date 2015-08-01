@@ -10,7 +10,7 @@
 				Account.getUserNames()
 						.then(function (response) {
 
-							if (!response) {
+							if (!response.data) {
 								self.enable = true;
 							} else {
 
