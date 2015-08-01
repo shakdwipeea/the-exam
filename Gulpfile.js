@@ -178,7 +178,6 @@ gulp.task('deploy', function () {
    return gulpSSH
     .shell([
        "cd the-exam",
-       "git stash",
        "git pull",
        "export GIN_MODE=release",
        "export GOPATH=/home/ubuntu/the-exam/server",

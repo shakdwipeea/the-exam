@@ -9,17 +9,21 @@
 				console.log("Function called");
 				Account.getUserNames()
 						.then(function (response) {
-							console.log(response);
-							var index = response.data.indexOf(self.username);
 
-							if(index !== -1) {
-								self.message = "Username taken";
-								self.enable = false;
-							} else {
-								self.message = "";
+							if (!response) {
 								self.enable = true;
-							}
+							} else {
 
+								var index = response.data.indexOf(self.username);
+
+								if (index !== -1) {
+									self.message = "Username taken";
+									self.enable = false;
+								} else {
+									self.message = "";
+									self.enable = true;
+								}
+							}
 
 						})
 			};
