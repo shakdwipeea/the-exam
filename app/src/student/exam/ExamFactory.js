@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('student')
-        .factory('Exam', function ($http, Account) {
+        .factory('Exam', function ($http, Account, Test) {
             var exams = [],
                 questions = [];
 
@@ -31,7 +31,7 @@
                             token: Account.getToken()
                         }
                     }).then(function (response) {
-                        questions = response.data.questions;
+                        Test.setQuestions(response.data.questions);
                         return response;
                     })
                 }

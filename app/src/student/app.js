@@ -33,6 +33,12 @@
                     controller: 'ExamController as exam'
                 })
 
+                .state('test', {
+                    url: '/test/:id',
+                    templateUrl: dir + 'test/test.tpl',
+                    controller: 'TestController as test'
+                })
+
             ;
         });
 

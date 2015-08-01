@@ -5,8 +5,13 @@
     'use strict';
 
     angular.module('student')
-        .controller('ExamController', function (Exam, toaster) {
+        .controller('ExamController', function (Exam, toaster, Account, $state) {
             var self = this;
+
+            if (!Account.getToken()) {
+                $state.go('account.login');
+                return;
+            }
 
             Exam.getExams()
                 .then(function (response) {
@@ -22,6 +27,9 @@
                 Exam.getCompleteTest(id)
                     .then(function (response) {
                         console.log(response);
+                        $state.go('test', {
+                            id: response.data.questions[0].Id
+                        })
                     })
                     .catch(function (reason) {
                         console.log(reason);
