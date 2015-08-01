@@ -178,6 +178,7 @@ gulp.task('deploy', function () {
    return gulpSSH
     .shell([
        "cd the-exam",
+       "git stash",
        "git pull",
        "export GIN_MODE=release",
        "export GOPATH=/home/ubuntu/the-exam/server",
@@ -212,7 +213,7 @@ gulp.task('lint', function () {
     return gulp.src('app/src/student/**/*.js')
         .pipe(jsHint('.jshintrc'))
         .pipe(jsHint.reporter(stylish))
-})
+});
 
 /*
  * Build assets by default.
