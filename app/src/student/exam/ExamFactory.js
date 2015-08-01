@@ -5,7 +5,7 @@
     'use strict';
 
     angular.module('student')
-        .factory('Exam', function ($http, Account, Test) {
+        .factory('Exam', function ($http, Account, Test, Result) {
             var exams = [],
                 questions = [];
 
@@ -24,6 +24,7 @@
                 },
 
                 getCompleteTest: function (id) {
+                    Result.setId(id);
                     return $http({
                         method: 'GET',
                         url: '/secure/test/' + id,

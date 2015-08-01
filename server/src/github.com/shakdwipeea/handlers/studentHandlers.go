@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"gopkg.in/mgo.v2/bson"
 )
 
 func (m *Mongo) GetUserNames(c *gin.Context) {
@@ -160,6 +161,81 @@ func (m *Mongo) GetExams(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"tests": tests,
+	})
+
+}
+
+func (m *Mongo) StoreResult(c *gin.Context) {
+	type ResponseForm struct {
+		Id     string `json:"id"`
+		Answer string `json:"answer"`
+	}
+
+	var resultForm struct {
+		Token    string `json:"token"`
+		Score    string `json:"score"`
+		Response []ResponseForm`json:"response"`
+		TestId   string `json:"test_id"`
+	}
+
+
+	err := c.BindJSON(&resultForm)
+
+	if err != nil {
+		log.Println("rui", err)
+		utils.ErrorResponse(c, http.StatusBadRequest, "Params wring");
+		return
+	}
+
+	token, err := utils.JwtAuthenticator(resultForm.Token)
+
+	println("ofijwejio")
+	if err != nil {
+		log.Println("kauwa", err)
+		utils.ErrorResponse(c, http.StatusForbidden, "Log IN again")
+		return
+	}
+
+	username, ok := token.Claims["username"].(string)
+
+	if !ok {
+		log.Println("kauwa", ok)
+		utils.ErrorResponse(c, http.StatusForbidden, "log in afain")
+		return
+	}
+
+	var res []models.Answer
+
+	for _, r := range resultForm.Response {
+		var temp models.Answer
+		temp.Answer = r.Answer
+
+		if bson.IsObjectIdHex(r.Id) {
+			temp.QuestionId = bson.ObjectIdHex(r.Id)
+		}
+
+		res = append(res, temp)
+	}
+
+	var r models.Result
+	r.Username = username
+	r.Response = res
+	r.Score = resultForm.Score
+
+	if bson.IsObjectIdHex(resultForm.TestId) {
+		r.TestId = bson.ObjectIdHex(resultForm.TestId)
+	}
+
+	err = r.InsertResult(m.Database)
+
+	if err != nil {
+		log.Println("kauwa", err)
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Cannot save result")
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "Done",
 	})
 
 }

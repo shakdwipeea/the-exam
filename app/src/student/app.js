@@ -39,6 +39,12 @@
                     controller: 'TestController as test'
                 })
 
+                .state('result', {
+                    url: '/result',
+                    templateUrl: dir + 'result/result.tpl',
+                    controller: 'ResultController as result'
+                })
+
             ;
         });
 

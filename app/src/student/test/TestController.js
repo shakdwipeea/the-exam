@@ -31,6 +31,7 @@
                     } else {
                         console.log('Complete');
                         toaster.pop('success', 'Success', 'Test Complete');
+                        $state.go('result');
                     }
                 } else {
                     toaster.pop('error', 'Error', 'Its not working');

@@ -5,7 +5,7 @@
     'use strict'
 
     angular.module('student')
-        .factory('Test', function () {
+        .factory('Test', function (Result) {
             var _questions = [],
                 _current = 0;
 
@@ -45,6 +45,7 @@
 
                 next: function () {
                     if (_current == _questions.length - 1) {
+                        Result.setQuestions(_questions);
                         return false;
                     } else {
                         _current++;

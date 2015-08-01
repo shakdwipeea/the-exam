@@ -89,6 +89,8 @@ func main() {
 	//refactor and combine with single /test
 	router.GET("/getTests", mongo.GetExams)
 
+	router.POST("/saveResult", mongo.StoreResult)
+
 	/**
 	Run the server
 	*/
