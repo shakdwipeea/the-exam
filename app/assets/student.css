@@ -3,11 +3,15 @@
 }
 
 @media screen and (max-width: 600px) {
-	#toast-container.hide-on-mobile {
+	#toast-container.ak-toast {
 		display: none;
 	}
 }
 
 .ak-error-notify {
 	color: red;
+}
+
+#toast-container.ak-toast {
+	height: 20%;
 }
