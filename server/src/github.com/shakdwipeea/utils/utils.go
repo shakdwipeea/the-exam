@@ -1,10 +1,12 @@
 package utils
+
 import (
 	"crypto/sha1"
-	"io"
-	"github.com/gin-gonic/gin"
-	"github.com/dgrijalva/jwt-go"
 	"errors"
+	"io"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
 )
 
 const MySigningKey string = "madh165r35##@@#"
@@ -14,7 +16,7 @@ type Response struct {
 	Msg string
 }
 
-func HashPassword (pass string) string {
+func HashPassword(pass string) string {
 	h := sha1.New()
 	io.WriteString(h, pass)
 	return string(h.Sum(nil))
@@ -29,8 +31,8 @@ func ErrorResponse(c *gin.Context, code int, msg string) {
 func JwtAuthenticator(token string) (*jwt.Token, error) {
 	parsedToken, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		/*		if _,ok := token.Method.(*jwt.SigningMethodHS256); !ok {
-					return nil, errors.New("Wrong token")
-				}*/
+				return nil, errors.New("Wrong token")
+			}*/
 		return []byte(MySigningKey), nil
 	})
 

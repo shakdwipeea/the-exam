@@ -1,13 +1,15 @@
 package handlers
 
 import (
+	"log"
+	"net/http"
+	"sort"
+	"time"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/shakdwipeea/models"
 	"github.com/shakdwipeea/utils"
-	"log"
-	"net/http"
-	"time"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -83,19 +85,17 @@ func (m *Mongo) StudentSignUp(c *gin.Context) {
 		Group    []string `json:"groups"`
 	}
 
-
 	err := c.BindJSON(&signUpForm)
 
 	if err != nil {
 		log.Println("rui", err)
-		utils.ErrorResponse(c, http.StatusBadRequest, "Params wring");
+		utils.ErrorResponse(c, http.StatusBadRequest, "Params wring")
 		return
 	}
 
-
 	if signUpForm.Username == "" || signUpForm.Password == "" || len(signUpForm.Group) == 0 {
 		log.Println(signUpForm)
-		utils.ErrorResponse(c, http.StatusBadRequest, "Give Proper Formats");
+		utils.ErrorResponse(c, http.StatusBadRequest, "Give Proper Formats")
 		return
 	}
 
@@ -172,18 +172,17 @@ func (m *Mongo) StoreResult(c *gin.Context) {
 	}
 
 	var resultForm struct {
-		Token    string `json:"token"`
-		Score    string `json:"score"`
-		Response []ResponseForm`json:"response"`
-		TestId   string `json:"test_id"`
+		Token    string         `json:"token"`
+		Score    string         `json:"score"`
+		Response []ResponseForm `json:"response"`
+		TestId   string         `json:"test_id"`
 	}
-
 
 	err := c.BindJSON(&resultForm)
 
 	if err != nil {
 		log.Println("rui", err)
-		utils.ErrorResponse(c, http.StatusBadRequest, "Params wring");
+		utils.ErrorResponse(c, http.StatusBadRequest, "Params wring")
 		return
 	}
 
@@ -236,6 +235,49 @@ func (m *Mongo) StoreResult(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "Done",
+	})
+
+}
+
+//ByScore sorting interface
+type ByScore []models.Result
+
+func (s ByScore) Len() int { return len(s) }
+
+func (s ByScore) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func (s ByScore) Less(i, j int) bool { return s[i].Score < s[j].Score }
+
+//GetLeaderBoardsOfTest handler func to get the leaderboards of a particilar test
+func (m *Mongo) GetLeaderBoardsOfTest(c *gin.Context) {
+	testId := c.Param("testId")
+
+	if testId == "" {
+		utils.ErrorResponse(c, http.StatusBadRequest, "No id provided")
+		return
+	}
+
+	var result models.Result
+
+	//convert testid string to bson.ObjectId
+	if bson.IsObjectIdHex(testId) {
+		result.TestId = bson.ObjectIdHex(testId)
+	} else {
+		utils.ErrorResponse(c, http.StatusExpectationFailed, "Cannot retreive test id")
+		return
+	}
+
+	results, err := result.GetResultByID(m.Database)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Cannot retreive from db")
+		return
+	}
+
+	sort.Sort(ByScore(results))
+
+	c.JSON(http.StatusOK, gin.H{
+		"results": results,
 	})
 
 }
