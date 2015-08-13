@@ -45,6 +45,12 @@
                     controller: 'ResultController as result'
                 })
 
+                .state('leaderboards', {
+                  url: '/leader/:id',
+                  templateUrl: dir + 'leaderboards/leaderboards.tpl',
+                  controller: 'LeaderController as leader'
+                })
+
             ;
         });
 

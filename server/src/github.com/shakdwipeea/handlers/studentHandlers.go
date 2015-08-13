@@ -3,7 +3,6 @@ package handlers
 import (
 	"log"
 	"net/http"
-	"sort"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -239,15 +238,6 @@ func (m *Mongo) StoreResult(c *gin.Context) {
 
 }
 
-//ByScore sorting interface
-type ByScore []models.Result
-
-func (s ByScore) Len() int { return len(s) }
-
-func (s ByScore) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
-
-func (s ByScore) Less(i, j int) bool { return s[i].Score < s[j].Score }
-
 //GetLeaderBoardsOfTest handler func to get the leaderboards of a particilar test
 func (m *Mongo) GetLeaderBoardsOfTest(c *gin.Context) {
 	testId := c.Param("testId")
@@ -269,12 +259,12 @@ func (m *Mongo) GetLeaderBoardsOfTest(c *gin.Context) {
 
 	results, err := result.GetResultByID(m.Database)
 
+	log.Println("The res", results)
+
 	if err != nil {
 		utils.ErrorResponse(c, http.StatusInternalServerError, "Cannot retreive from db")
 		return
 	}
-
-	sort.Sort(ByScore(results))
 
 	c.JSON(http.StatusOK, gin.H{
 		"results": results,
