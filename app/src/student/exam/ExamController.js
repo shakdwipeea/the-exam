@@ -13,15 +13,22 @@
                 return;
             }
 
-            Exam.getExams()
-                .then(function (response) {
-                    console.log(response);
-                    self.tests = response.data.tests;
-                })
-                .catch(function (reason) {
-                    console.log(reason);
-                    toaster.pop('error', 'Error Occured', reason.data.err);
-                });
+            var exams = Exam.getCachedExams()
+            if (exams.length > 0) {
+              self.tests = exams;
+            } else {
+              Exam.getExams()
+                  .then(function (response) {
+                      console.log(response);
+                      self.tests = response.data.tests;
+                  })
+                  .catch(function (reason) {
+                      console.log(reason);
+                      toaster.pop('error', 'Error Occured', reason.data.err);
+                  });
+            }
+
+
 
             self.getTestDetail = function (id) {
                 Exam.getCompleteTest(id)

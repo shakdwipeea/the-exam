@@ -35,6 +35,14 @@
                         Test.setQuestions(response.data.questions);
                         return response;
                     })
+                },
+
+                getCachedExams: function () {
+                  return questions;
+                },
+
+                getCachedQuestions: function () {
+                  return exams;
                 }
             }
         });

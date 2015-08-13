@@ -14,4 +14,7 @@
 
 #toast-container.ak-toast {
 	height: 20%;
+	z-index: 0;
+	position: absolute;
+	width: 40%;
 }

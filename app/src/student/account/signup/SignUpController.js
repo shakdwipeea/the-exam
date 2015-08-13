@@ -2,7 +2,7 @@
 	'use strict'
 
 	angular.module('student')
-		.controller('SignUpController', function  (Account, toaster, $state) {
+		.controller('SignUpController', function  (Account, $state) {
 			var self = this;
 			self.message = "";
 			self.checkUserName = function () {
@@ -49,7 +49,7 @@
 
 					}
 				}
-				
+
 				var data = {
 					username: self.username,
 					password: self.password,
@@ -65,15 +65,15 @@
 							username: data.username,
 							password: data.password
 						}).then(function () {
-							toaster.pop('success', 'Hurray', "Logged In");
 							$state.go('exam');
 						}).catch(function (reason) {
-							toaster.pop('error', 'Error', reason.data.err);
+							console.log(reason);
+						//	toaster.pop('error', 'Error', reason.data.err);
 						})
 					})
 					.catch(function  (reason) {
 						console.log(reason);
-						toaster.pop('error', 'Error', reason.data.err);
+						//toaster.pop('error', 'Error', reason.data.err);
 					});
 			}
 		});

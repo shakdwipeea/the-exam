@@ -15,6 +15,9 @@
          </button>
         </div>
       </div>
+      <div data-ng-bind="login.Message">
+
+      </div>
     </form>
+
   </div>
-        
