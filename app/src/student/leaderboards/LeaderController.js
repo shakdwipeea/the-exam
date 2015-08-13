@@ -12,7 +12,7 @@
 
               if(self.results) {
                 self.results.sort(function (a, b) {
-                  return a.Score - b.Score;
+                  return b.Score - a.Score;
                 })
               }
 
