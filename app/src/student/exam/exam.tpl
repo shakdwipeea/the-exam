@@ -9,6 +9,8 @@
         <div class="card-action">
             <button data-ng-click="exam.getTestDetail(test.Id)" class="waves-effect waves-light btn-flat">Take Test
             </button>
+            <button type="button" name="leaderboards" class="waves-effect waves-light btn-flat pull-right"
+              ui-sref="leaderboards({id: test.Id})">LeaderBoards</button>
         </div>
     </div>
 </div>

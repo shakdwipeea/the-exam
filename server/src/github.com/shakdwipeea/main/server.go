@@ -1,11 +1,12 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/shakdwipeea/handlers"
 	"github.com/tommy351/gin-cors"
 	"gopkg.in/mgo.v2"
-	"net/http"
 )
 
 func main() {
@@ -77,10 +78,9 @@ func main() {
 	*/
 	router.Static("/public", "./app/")
 
-
 	/**
 	Routes for students
-	 */
+	*/
 
 	router.GET("/usernames", mongo.GetUserNames)
 	router.POST("/studentLogin", mongo.StudentLogin)
@@ -90,6 +90,8 @@ func main() {
 	router.GET("/getTests", mongo.GetExams)
 
 	router.POST("/saveResult", mongo.StoreResult)
+
+	router.GET("/leaderboards/:testId", mongo.GetLeaderBoardsOfTest)
 
 	/**
 	Run the server
