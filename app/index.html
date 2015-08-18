@@ -14,7 +14,14 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Sparkling Physics</a>
+            <a ui-sref="login" class="brand-logo">Sparkling Physics</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a >Rankings</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a >Rankings</a></li>
+      </ul>
         </div>
     </nav>
         </div>
@@ -66,5 +73,11 @@
 
 
 <script src="public/dist/student.js"></script>
+
+<script type="text/javascript">
+
+  $(".button-collapse").sideNav();
+      
+</script>
 </body>
 </html>

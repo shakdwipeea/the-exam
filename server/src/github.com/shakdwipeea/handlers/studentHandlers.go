@@ -3,6 +3,7 @@ package handlers
 import (
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -270,4 +271,78 @@ func (m *Mongo) GetLeaderBoardsOfTest(c *gin.Context) {
 		"results": results,
 	})
 
+}
+
+//GetRanks ..get the overall rankings implementing the ranking algo
+func (m *Mongo) GetRanks(c *gin.Context) {
+	results, err := models.GetResults(m.Database)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusInternalServerError, "Error querying")
+		return
+	}
+
+	users := make(map[string]float64)
+	tests := make(map[string]struct{})
+
+	var tempTestId string
+
+	//get unique usernames and testids
+	for _, user := range results {
+		_, ok := users[user.Username]
+
+		if !ok {
+			users[user.Username] = 0
+		}
+
+		tempTestId = user.TestId.Hex()
+		_, okAgain := tests[tempTestId]
+
+		if !okAgain && tempTestId != "" {
+			tests[tempTestId] = struct{}{}
+		}
+	}
+
+	log.Println("Users", users, tests)
+
+	for user := range users {
+		theScore := 0.0
+		for _ = range tests {
+			var restScore, myScore []float64
+			totRestScore := 0.0
+
+			for _, result := range results {
+				thisScore, err := strconv.ParseFloat(result.Score, 64)
+
+				if err != nil {
+					log.Println("Errorwa", err)
+					utils.ErrorResponse(c, http.StatusInternalServerError, "Cannot convert to str")
+					return
+				}
+
+				if result.Username == user {
+					myScore = append(myScore, thisScore)
+				} else {
+					restScore = append(restScore, thisScore)
+					totRestScore += thisScore
+				}
+			}
+
+			expectedScore := totRestScore / float64(len(restScore))
+
+			for _, sc := range myScore {
+				theScore += (sc - expectedScore)
+			}
+
+		}
+
+		users[user] = theScore
+	}
+
+	panic("Not implemented")
+
+	c.JSON(http.StatusOK, gin.H{
+		"users": users,
+		"tests": tests,
+	})
 }

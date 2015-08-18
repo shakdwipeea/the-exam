@@ -1,4 +1,5 @@
 package models
+
 import (
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -7,18 +8,19 @@ import (
 const questionCollectionName string = "Question"
 
 type Question struct {
-	Id           bson.ObjectId "_id"
-	QuestionText string
-	Option1      string
-	Option2      string
-	Option3      string
-	Option4      string
-	Correct      string
-	Tags         []string
-	Subject      string
+	Id             bson.ObjectId "_id"
+	QuestionText   string
+	Option1        string
+	Option2        string
+	Option3        string
+	Option4        string
+	Correct        string
+	Tags           []string
+	Subject        string
+	QuestionSetter string
 }
 
-func (q *Question) AddQuestion (db *mgo.Database) error {
+func (q *Question) AddQuestion(db *mgo.Database) error {
 	q.Id = bson.NewObjectId()
 
 	err := db.C(questionCollectionName).
@@ -31,10 +33,10 @@ func (q *Question) GetQuestionsOfSubject(db *mgo.Database, subject string) ([]Qu
 	var questions []Question
 
 	err := db.C(questionCollectionName).
-	Find(bson.M{
+		Find(bson.M{
 		"subject": subject,
 	}).
-	All(&questions)
+		All(&questions)
 
 	if err != nil {
 		return questions, err

@@ -92,6 +92,14 @@ func main() {
 	router.POST("/saveResult", mongo.StoreResult)
 
 	router.GET("/leaderboards/:testId", mongo.GetLeaderBoardsOfTest)
+	router.GET("/ranks", mongo.GetRanks)
+
+	/**
+	Routes for question setter
+	*/
+
+	router.POST("/setterSignup", mongo.SignupSetter)
+	router.POST("/setterLogin", mongo.LoginSetter)
 
 	/**
 	Run the server

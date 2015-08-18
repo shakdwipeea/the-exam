@@ -29,8 +29,8 @@ gulp.task('server:build', function() {
      'go install',
      'server/src/github.com/shakdwipeea/main/server.go']);*/
     var myVar = {
-        'GOPATH': '/home/akash/Kode/Radeon/server',
-        'GOBIN': '/home/akash/Kode/Radeon/server/bin'
+        'GOPATH': 'C:/Kode/Radeon/server',
+        'GOBIN': 'C:/Kode/Radeon/server/bin'
     };
 
     process.env['GOPATH'] = myVar.GOPATH;
@@ -89,8 +89,8 @@ gulp.task('server:spawn', function() {
         browserSync.init({
             notify: false,
             open: false,
-            port: 3000,
-            proxy: 'http://localhost'
+            port: 4000,
+            proxy: 'http://localhost:3000'
         });
     }
 
@@ -166,7 +166,7 @@ var config = {
     host: '52.3.212.51',
     port: 22,
     username: 'ubuntu',
-    privateKey: fs.readFileSync('/home/akash/aws/sarawgi/sarawagi_ec2.pem')
+    privateKey: fs.readFileSync('C:/Raghav___back_up/mate_15_aug/aws/sarawgi/sarawagi_ec2.pem')
 };
 
 var gulpSSH = new GulpSSH({
