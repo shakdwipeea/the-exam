@@ -51,6 +51,10 @@ func main() {
 		c.HTML(http.StatusOK, "admin.html", gin.H{})
 	})
 
+	router.GET("/setter", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "setter.html", gin.H{})
+	})
+
 	/**
 	API Routes
 	*/
