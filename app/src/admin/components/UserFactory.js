@@ -32,10 +32,10 @@ angular.module('question')
                 });
         };
 
-        var addQuestion = function  (questionData, selectedTags) {
+        var addQuestion = function  (questionData, selectedTags, subjectSel) {
             console.log('Q in addQues factory',questionData);
 
-            if (token && subject && username) {
+            if (token && subjectSel && username) {
                 var requestBody = {
                     questionText: questionData.questionText,
                     option1: questionData.option1,
@@ -43,7 +43,7 @@ angular.module('question')
                     option3: questionData.option3,
                     option4: questionData.option4,
                     token: token,
-                    subject: subject,
+                    subject: subjectSel,
                     correct: questionData.correct,
                     tags: selectedTags
                 };
@@ -89,6 +89,23 @@ angular.module('question')
             return $http.get(Host.add + '/tags');
         };
 
+        var addSubject = function (subject) {
+            if (token && subject.name) {
+                return $http.post(Host.add + '/subject', {
+                    name: subject.name,
+                    token: token
+                })
+            } else {
+                console.log("Throw")
+                return new Error("Not signed in or no tag")
+            }
+        };
+
+        var getSubject = function () {
+            return $http.get(Host.add + '/subject');
+        };
+
+
         var isToken = function() {
             return !!token;
         };
@@ -131,6 +148,8 @@ angular.module('question')
             add: addQuestion,
             newTag: addTag,
             getTags: getTags,
+            newSubject: addSubject,
+            getSubject: getSubject,
             isLoggedIn: isToken,
             getQuestions: getQuestions,
             setTest: setTestQuestionDetails,

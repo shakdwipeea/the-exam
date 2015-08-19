@@ -6,13 +6,11 @@ import (
 	"github.com/shakdwipeea/models"
 	"github.com/shakdwipeea/utils"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 	"log"
 	"net/http"
 	"time"
-	"gopkg.in/mgo.v2/bson"
 )
-
-
 
 /**
 The database struct which contains all the handlers
@@ -73,13 +71,27 @@ func (mongo *Mongo) AddTeacher(c *gin.Context) {
 
 	var teacher models.Teacher
 
-	adminPass := c.PostForm("adminPass")
+	var req struct {
+		AdminPass string `json:"adminPass"`
+		Username  string `json:"username"`
+		Password  string `json:"password"`
+		Subject   string `json:"subject"`
+	}
+
+	err := c.BindJSON(&req)
+
+	if err != nil {
+		utils.ErrorResponse(c, http.StatusBadRequest, "Could not parse")
+		return
+	}
+
+	adminPass := req.AdminPass
 
 	if adminPass == "admin" {
 
-		teacher.Password = c.PostForm("password")
-		teacher.Subject = c.PostForm("subject")
-		teacher.Username = c.PostForm("username")
+		teacher.Password = req.Password
+		teacher.Subject = req.Subject
+		teacher.Username = req.Username
 
 		if teacher.Password == "" || teacher.Subject == "" || teacher.Username == "" {
 			var res utils.Response
@@ -172,15 +184,15 @@ func (mongo *Mongo) Login(c *gin.Context) {
 
 func (mongo *Mongo) AddQuestion(c *gin.Context) {
 	var QuestionInput struct {
-		Text    string `json:"questionText"`
-		Option1 string `json:"option1"`
-		Option2 string `json:"option2"`
-		Option3 string `json:"option3"`
-		Option4 string `json:"option4"`
-		Token   string `json:"token"`
-		Subject string `json:"subject"`
-		Tags []string `json:"tags"`
-		Correct string `json:"correct"`
+		Text    string   `json:"questionText"`
+		Option1 string   `json:"option1"`
+		Option2 string   `json:"option2"`
+		Option3 string   `json:"option3"`
+		Option4 string   `json:"option4"`
+		Token   string   `json:"token"`
+		Subject string   `json:"subject"`
+		Tags    []string `json:"tags"`
+		Correct string   `json:"correct"`
 	}
 
 	err := c.BindJSON(&QuestionInput)
@@ -201,19 +213,18 @@ func (mongo *Mongo) AddQuestion(c *gin.Context) {
 		/*
 			validate jwt token
 		*/
-/*		token, err := jwt.Parse(QuestionInput.Token, func(token *jwt.Token) (interface{}, error) {
-			if token.Claims["subject"] == QuestionInput.Subject {
-				return []byte(mySigningKey), nil
-			} else {
-				return nil, nil
-			}
+		/*		token, err := jwt.Parse(QuestionInput.Token, func(token *jwt.Token) (interface{}, error) {
+				if token.Claims["subject"] == QuestionInput.Subject {
+					return []byte(mySigningKey), nil
+				} else {
+					return nil, nil
+				}
 
-		})*/
+			})*/
 
 		token, err := utils.JwtAuthenticator(QuestionInput.Token)
 
-		if err == nil && token.Valid &&
-			token.Claims["subject"] == QuestionInput.Subject  {
+		if err == nil && token.Valid {
 			/**
 			Token is gud . Now move
 			*/
@@ -272,7 +283,7 @@ func (m *Mongo) GetTags(c *gin.Context) {
 
 func (mongo *Mongo) AddTag(c *gin.Context) {
 	var tagInput struct {
-		Name string `json:"name"`
+		Name  string `json:"name"`
 		Token string `json:"token"`
 	}
 
@@ -281,7 +292,7 @@ func (mongo *Mongo) AddTag(c *gin.Context) {
 	var tag models.Tags
 	tag.Name = tagInput.Name
 
-	log.Println("Why u do this",tagInput.Name)
+	log.Println("Why u do this", tagInput.Name)
 
 	if err != nil {
 		log.Println("Add tags err", err)
@@ -321,9 +332,9 @@ func (mongo *Mongo) AddTag(c *gin.Context) {
 }
 
 /**
-	handlers to retrieve questions
-	from database
- */
+handlers to retrieve questions
+from database
+*/
 func (m *Mongo) GetQuestions(c *gin.Context) {
 
 	tokenForm := c.Query("token")
@@ -364,17 +375,17 @@ func (m *Mongo) GetQuestions(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"err": nil,
+		"err":       nil,
 		"questions": questions,
 	})
 }
 
 func (m *Mongo) AddTest(c *gin.Context) {
 	var addTestInput struct {
-		Token string `json:"token"`
+		Token string   `json:"token"`
 		Ids   []string `json:"ids"`
-		Name  string `json:"name"`
-		Group string `json:"group"`
+		Name  string   `json:"name"`
+		Group string   `json:"group"`
 	}
 
 	//Parse the req body
@@ -391,7 +402,7 @@ func (m *Mongo) AddTest(c *gin.Context) {
 
 	if err != nil {
 		utils.ErrorResponse(c, http.StatusForbidden, "Log In again")
-		return;
+		return
 	}
 
 	var test models.Test
@@ -400,14 +411,14 @@ func (m *Mongo) AddTest(c *gin.Context) {
 
 	if !ok {
 		utils.ErrorResponse(c, http.StatusForbidden, "Log In again")
-		return;
+		return
 	}
 
 	var questionIds []bson.ObjectId
 	//convert string ids to object ids
 
 	for _, e := range addTestInput.Ids {
-		if (bson.IsObjectIdHex(e)) {
+		if bson.IsObjectIdHex(e) {
 			log.Println("The objectid for")
 			questionIds = append(questionIds, bson.ObjectIdHex(e))
 		} else {
@@ -448,7 +459,6 @@ func (m *Mongo) GetAllTest(c *gin.Context) {
 		return
 	}
 
-
 	var test models.Test
 	test.Subject = subject
 
@@ -460,7 +470,7 @@ func (m *Mongo) GetAllTest(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"err": nil,
+		"err":   nil,
 		"tests": tests,
 	})
 }
@@ -496,7 +506,7 @@ func (m *Mongo) GetTest(c *gin.Context) {
 	todo get all questions for this test
 	should be probably done with go routines for
 	improved performance
-	 */
+	*/
 	var questions []models.Question
 	for _, id := range test.QuestionIds {
 		temp_question, err := getQuestion(m.Database, id)
@@ -509,8 +519,8 @@ func (m *Mongo) GetTest(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"err": nil,
-		"test": test,
+		"err":       nil,
+		"test":      test,
 		"questions": questions,
 	})
 }
@@ -564,7 +574,64 @@ func (m *Mongo) EnableTest(c *gin.Context) {
 	})
 }
 
+func (m *Mongo) GetSubjects(c *gin.Context) {
+	var subject []models.Subject
 
+	log.Println(c.ClientIP())
 
+	subject = new(models.Subject).Get(m.Database)
+	c.JSON(http.StatusOK, gin.H{
+		"err":      false,
+		"subjects": subject,
+	})
+}
 
+func (mongo *Mongo) AddSubject(c *gin.Context) {
+	var tagInput struct {
+		Name  string `json:"name"`
+		Token string `json:"token"`
+	}
 
+	err := c.BindJSON(&tagInput)
+
+	var subject models.Subject
+	subject.Name = tagInput.Name
+
+	log.Println("Why u do this", tagInput.Name)
+
+	if err != nil {
+		log.Println("Add tags err", err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": true,
+			"msg": "Error Parsing",
+		})
+		return
+	}
+
+	token, err1 := utils.JwtAuthenticator(tagInput.Token)
+
+	if err1 != nil || !token.Valid {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": true,
+			"msg": "Login Again",
+		})
+		return
+	}
+
+	err = subject.Add(mongo.Database)
+
+	if err != nil {
+		log.Println("Add tags db err", err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"err": true,
+			"msg": "Error Inserting",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"err": false,
+		"msg": "Tag Added",
+	})
+
+}

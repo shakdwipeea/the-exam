@@ -124,8 +124,7 @@ gulp.task('server:watch', function() {
 gulp.task('build', [
     'server:build',
     'admin-build',
-    'student-build',
-    'setter-build'
+    'student-build'
 ]);
 
 /*
@@ -141,7 +140,7 @@ gulp.task('watch', [
     ]);
 });
 
-gulp.task('reload', ['admin-build', 'student-build', 'setter-build'], function () {
+gulp.task('reload', ['admin-build', 'student-build'], function () {
 
     notifier.notify({
         title: 'client refreshed',
@@ -156,7 +155,7 @@ gulp.task('client', function () {
             message: 'Error browser sync not active'
         })
     }
-    gulp.watch(['app/**/*.js', 'app/*.html', 'app/**/*.tpl', 'app/assets/*.css'], ['admin-build', 'student-build', 'setter-build', browserSync.reload])
+    gulp.watch(['app/**/*.js', 'app/*.html', 'app/**/*.tpl', 'app/assets/*.css'], ['admin-build', 'student-build', browserSync.reload])
     console.log('serving on port 8000')
 });
 /**
@@ -209,13 +208,7 @@ gulp.task('student-build', function () {
         .pipe(gulp.dest('app/dist/'))
 });
 
-gulp.task('setter-build', function () {
-    return gulp.src(['app/src/setter/app.js', 'app/src/setter/**/*.js'])
-        .pipe(concat('setter.js'))
-        .pipe(ngAnnotate())
-        .pipe(uglify())
-        .pipe(gulp.dest('app/dist/'))
-});
+
 
 gulp.task('lint', function () {
     return gulp.src('app/src/student/**/*.js')

@@ -51,10 +51,6 @@ func main() {
 		c.HTML(http.StatusOK, "admin.html", gin.H{})
 	})
 
-	router.GET("/setter", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "setter.html", gin.H{})
-	})
-
 	/**
 	API Routes
 	*/
@@ -77,6 +73,9 @@ func main() {
 		secure.GET("/enable/:id", mongo.EnableTest)
 	}
 
+	router.GET("/subject", mongo.GetSubjects)
+	router.POST("/subject", mongo.AddSubject)
+
 	/**
 	for static files
 	*/
@@ -97,14 +96,6 @@ func main() {
 
 	router.GET("/leaderboards/:testId", mongo.GetLeaderBoardsOfTest)
 	router.GET("/ranks", mongo.GetRanks)
-
-	/**
-	Routes for question setter
-	*/
-
-	router.POST("/setterSignup", mongo.SignupSetter)
-	router.POST("/setterLogin", mongo.LoginSetter)
-
 	/**
 	Run the server
 	*/

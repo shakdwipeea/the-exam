@@ -21,11 +21,14 @@ angular.module('question')
                 !self.question.option4 || !self.question.correct) {
                 toaster.pop('error', 'Error ocurred', 'Missing Values');
                 return;
-            }
+            } else if (!self.subjectSelect) {
+                toaster.pop('error', 'Error ocurred', 'No Subjects');
+                return;
+            };
 
 			self.addText = "Adding.............";
 
-        	var promise = User.add(self.question, self.selectedTags);
+        	var promise = User.add(self.question, self.selectedTags, self.subjectSelect);
 			console.log(promise instanceof Error);
 
 			if (!(promise instanceof Error)) {
@@ -117,6 +120,56 @@ angular.module('question')
             self.selectedTags = k;
         }
 
+
+        //Subjects
+        self.addSubject = function ($event) {
+            if ($event.keyCode === 13) {
+
+                var promise = User.newSubject({
+                    name: self.newSubjectText
+                });
+
+                if (promise instanceof Error) {
+                    toaster.pop('error', 'Error', 'Could not add Tags');
+                } else {
+                    promise.then(function (response) {
+                        getSubject();
+                        if (response.data.err === false) {
+                            self.newTagText = "";
+                            toaster.pop('success', 'Success', 'New tag added');
+                        } else {
+                            toaster.pop('error', 'Error', response.data.msg);
+                        }
+                    })
+                        .catch(function (reason) {
+                            console.log(reason);
+                            toaster.pop('error', 'Error', response.data.msg);
+                        })
+                }
+            }
+        };
+
+        getSubject();
+
+        function getSubject () {
+            User.getSubject()
+                .then(function (response) {
+                    if (response.data.err === false) {
+                        self.subjects = response.data.subjects;
+
+                        console.log(response.data.subjects);
+                    } else {
+                        toaster.pop('error', 'Colud not get Tags', response.data.msg);
+                    }
+                })
+                .catch(function (reason) {
+                    toaster.pop('error', 'Server No gud ', "Ouuta here");
+                })
+        }
+
+        self.SelectSubject = function  () {
+            console.log(self.subjectSelect);
+        }
 
 
     });

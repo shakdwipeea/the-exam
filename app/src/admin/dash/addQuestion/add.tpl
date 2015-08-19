@@ -61,6 +61,7 @@
                 <li class="list-group-item" mathjax-bind="add.question.option4">Option3</li>
             </ul>
         </div>
+        <!-- TAGS -->
         <div class="row">
             <div class="form-group">
 
@@ -83,6 +84,29 @@
                     <div class="checkbox" data-ng-repeat="tag in add.tags2">
                         <label>
                             <input data-ng-model="add.tagSelect[tag.Name]" ng-change="add.Select()" type="checkbox" >{{tag.Name}}
+                        </label>
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div>
+
+
+        <!--SUBJECTS-->
+                <div class="row">
+            <div class="form-group">
+
+                <h4>
+                    <label for="tags">Subjects:</label>
+                    
+                </h4>
+                <input ng-keydown="add.addSubject($event)" id="label" type="text" data-ng-model="add.newSubjectText" placeholder="Press enter to add a subject"
+                       class="form-control">
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-12">
+                    <div class="checkbox"   data-ng-repeat="subject in add.subjects">
+                        <label>
+                            <input data-ng-model="add.subjectSelect" value="{{subject.Name}}" ng-change="add.SelectSubject()" type="radio" >{{subject.Name}}
                         </label>
                     </div><!-- /input-group -->
                 </div>
