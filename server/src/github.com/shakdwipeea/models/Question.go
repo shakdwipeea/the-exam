@@ -57,3 +57,17 @@ func (q *Question) GetQuestion(db *mgo.Database, id bson.ObjectId) (Question, er
 
 	return question, nil
 }
+
+func (q *Question) GetQuestions(db *mgo.Database) ([]Question, error) {
+	var questions []Question
+
+	err := db.C(questionCollectionName).
+		Find(bson.M{}).
+		All(&questions)
+
+	if err != nil {
+		return questions, err
+	}
+
+	return questions, nil
+}

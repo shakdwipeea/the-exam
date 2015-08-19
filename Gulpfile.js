@@ -182,6 +182,7 @@ gulp.task('deploy', function () {
        "export GIN_MODE=release",
        "export GOPATH=/home/ubuntu/the-exam/server",
        "export GOBIN=/home/ubuntu/the-exam/server/bin",
+       "go install ./server/src/github.com/shakdwipeea/main/server.go",
        "pm2 restart ./server/bin/server"
    ], {
            filepath: 'shell.log'

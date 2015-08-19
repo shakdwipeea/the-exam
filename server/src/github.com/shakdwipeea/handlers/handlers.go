@@ -237,6 +237,7 @@ func (mongo *Mongo) AddQuestion(c *gin.Context) {
 			question.Subject = QuestionInput.Subject
 			question.Tags = QuestionInput.Tags
 			question.Correct = QuestionInput.Correct
+			question.QuestionSetter = token.Claims["username"].(string)
 
 			err := question.AddQuestion(mongo.Database)
 
@@ -356,7 +357,7 @@ func (m *Mongo) GetQuestions(c *gin.Context) {
 		return
 	}
 
-	subject, ok := token.Claims["subject"].(string)
+	_, ok := token.Claims["subject"].(string)
 
 	if !ok {
 		c.JSON(http.StatusForbidden, gin.H{
@@ -365,7 +366,7 @@ func (m *Mongo) GetQuestions(c *gin.Context) {
 		return
 	}
 
-	questions, err := new(models.Question).GetQuestionsOfSubject(m.Database, subject)
+	questions, err := new(models.Question).GetQuestions(m.Database)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
